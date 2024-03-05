@@ -1,0 +1,248 @@
+import React, { useState, ChangeEvent, useContext, useEffect } from 'react'
+import { useCssHandles } from 'vtex.css-handles'
+import { ProductContext } from "vtex.product-context";
+import { Spinner, ToastConsumer } from 'vtex.styleguide'
+import { useOrderItems } from 'vtex.order-items/OrderItems'
+import { IcoAlert, IcoCart } from '../svg/Icos'
+import { Modal } from '../Atom/Modal'
+import { ProductContextState } from '../typings/ProductType';
+import { CSS_HANDLES, formatter, validateInputNumber } from '../constant';
+import { GlueBySku } from './GlueBySku';
+
+
+export const CustomAppCalculator = () => {
+  const handles = useCssHandles(CSS_HANDLES)
+  const { addItem } = useOrderItems()
+  const { product, selectedItem } = useContext<ProductContextState>(ProductContext);
+  const [loading, setLoading] = useState(false)
+  const [loadingFreeSample, setLoadingFreeSample] = useState(false)
+  const [checkGlue, setCheckGlue] = useState(false)
+  const [skuGlue, setSkuGlue] = useState('')
+  const [skuFreeSample, setSkuFreeSample] = useState('')
+  const [inputMeters, setInputMeters] = useState(1)
+  const [cantBox, setCantBox] = useState(1)
+  const [cantGlue, setCantGlue] = useState(1)
+  const [unitMultiplierGlue, setUnitMultiplierGlue] = useState(0)
+  const [mountGlue, setMountGlue] = useState(0)
+  const [checkMore, setCheckMore] = useState(false)
+  const [beforeCheckInput, setBeforeCheckInput] = useState(0)
+  const [showCal, setShowCal] = useState(false)
+  const [showWhy, setShowWhy] = useState(false)
+  useEffect(() => {
+    if (product) {
+      const Glue = product.properties.find((pro) => pro.name === 'Id SKU Pegante')
+      if (Glue && Glue.values.length > 0) {
+        setSkuGlue(Glue.values[0])
+      }
+      const FreeSample = product.properties.find((pro) => pro.name === 'Id Muestra')
+      if (FreeSample && FreeSample.values.length > 0) {
+        setSkuFreeSample(FreeSample.values[0])
+      }
+    }
+  }, [product])
+
+  const unitMultiplier = selectedItem?.unitMultiplier
+  const Price = selectedItem?.sellers[0]?.commertialOffer.Price
+  const taxPercentage = selectedItem?.sellers[0]?.commertialOffer.taxPercentage
+  const Tax = selectedItem?.sellers[0]?.commertialOffer.Tax
+  const sellingPriceWithTax = (Price && taxPercentage && taxPercentage !== 0 && Tax && unitMultiplier) ? Math.ceil(Price + (Tax / unitMultiplier)) : Price
+
+  const measurementUnit = selectedItem?.measurementUnit
+
+  const inputChange = (input: ChangeEvent<HTMLInputElement>) => {
+    const { value } = input.target
+    const inputNumber = validateInputNumber(value) ? parseInt(value) : value === '' ? 0 : inputMeters !== 0 ? inputMeters : 0
+
+    setInputMeters(inputNumber)
+    setCheckMore(false)
+    if (unitMultiplier) {
+      const boxCount = Math.ceil(inputNumber / unitMultiplier)
+      setCantBox(boxCount)
+      const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))
+
+      setCantGlue(glue)
+    }
+
+  }
+
+  const checkMoreCant = () => {
+    if (checkMore) {
+      setInputMeters(beforeCheckInput)
+      if (unitMultiplier) {
+        const boxCount = Math.ceil(beforeCheckInput / unitMultiplier)
+        setCantBox(boxCount)
+        const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))
+        setCantGlue(glue)
+      }
+    } else {
+      setBeforeCheckInput(inputMeters)
+      const result = Math.ceil(inputMeters * 1.1)
+      setInputMeters(result)
+      if (unitMultiplier) {
+        const boxCount = Math.ceil(result / unitMultiplier)
+        setCantBox(boxCount)
+        const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))
+        setCantGlue(glue)
+      }
+    }
+    setCheckMore(!checkMore)
+  }
+  const addToCartAll = async (showToast: any) => {
+    setLoading(true)
+    const items = [
+      {
+        id: selectedItem?.itemId,
+        quantity: cantBox,
+        seller: '1'
+      }
+    ]
+    if (skuGlue !== '' && cantGlue > 0 && checkGlue) {
+      items.push({
+        id: skuGlue,
+        quantity: cantGlue,
+        seller: '1'
+      })
+    }
+    await addItem(items)
+    setLoading(false)
+    showToast({
+      message: `Productos agregados al carrito`,
+      duration: 3000,
+      horizontalPosition: 'left',
+    })
+  }
+  const addToCartFreeSample = async (showToast: any) => {
+    setLoadingFreeSample(true)
+    const items = []
+    if (skuFreeSample !== '') {
+      items.push({
+        id: skuFreeSample,
+        quantity: 1,
+        seller: '1'
+      })
+    }
+    await addItem(items)
+    setLoadingFreeSample(false)
+    showToast({
+      message: `La muestra gratis se agregó al carrito`,
+      duration: 3000,
+      horizontalPosition: 'left',
+    })
+  }
+  return (
+    <ToastConsumer>
+      {({ showToast }: any) => (
+        <div className={handles.container}>
+          <div className={handles.input_price}>
+            <div className={handles.container_input}>
+              <span className={handles.input_text}>
+                Ingresa la cantidad de metros que necesitas
+              </span>
+              <input className={handles.input} value={inputMeters} onChange={inputChange} />
+              <div className={handles.content_modal_met}>
+                <span className={handles.content_modal_met_text} onClick={() => setShowCal(true)}>
+                  ¿Cómo calculo el metraje?
+                </span>
+                <Modal show={showCal} setShow={setShowCal} >
+                  <div className={handles.modal_open}>
+                    <img src="https://ceramicaitalia.vteximg.com.br/arquivos/Tarjeta-metraje-01.png" alt="calcular metraje" className={handles.img1_modal} />
+                    <img src="https://ceramicaitalia.vteximg.com.br/arquivos/Tarjeta-metraje-02.png" alt="calcular metraje" className={handles.img2_modal} />
+                    <img src="https://ceramicaitalia.vteximg.com.br/arquivos/Tarjeta-metraje-03.png" alt="calcular metraje" className={handles.img3_modal} />
+                    <img src="https://ceramicaitalia.vteximg.com.br/arquivos/Tarjeta-metraje-04.png" alt="calcular metraje" className={handles.img4_modal} />
+                  </div>
+                </Modal>
+              </div>
+            </div>
+            <div className={handles.container_price}>
+              <div className={handles.text_price}>
+                <span className={handles.text_price_price}>Precio m
+                  <span className={handles.text_price_price_top}>2</span>
+                </span> <span className={handles.text_price_mount}>{formatter.format((sellingPriceWithTax) ? sellingPriceWithTax : 0)}</span>
+              </div>
+              <div className={handles.text_price_box}>
+                Precio caja: {formatter.format((unitMultiplier && sellingPriceWithTax) ? sellingPriceWithTax * unitMultiplier : 0)}/{unitMultiplier} {measurementUnit}
+              </div>
+            </div>
+          </div>
+          <div className={handles.input_radius}>
+            <label className={handles.radius_label}>
+              <input className={handles.radius_input} type='radio' checked={checkMore} onClick={checkMoreCant} />
+              <span className={handles.radius_text}>Agrega 10% más de material ¡TE LO RECOMENDAMOS!</span>
+            </label>
+            <div className={handles.content_modal_why}>
+              <span className={handles.content_modal_why_text} onClick={() => setShowWhy(true)}>¿Por qué? <IcoAlert /></span>
+              <Modal show={showWhy} setShow={setShowWhy} >
+                <div className={handles.content_modal_why_open}>
+                  <span className={handles.content_modal_why_open_text}>Recomendamos agregar 10% adicional para cubrir los desperdicios en la instalación</span>
+                </div>
+              </Modal>
+            </div>
+          </div>
+          <div className={handles.box_price}>
+            <div className={handles.box_content}>
+              <span className={handles.box_content_text}>{cantBox}</span>
+              <span className={handles.box_content_text_box}>Caja(s)</span>
+            </div>
+            <div className={handles.content_price}>
+              <span className={handles.price}>
+                {formatter.format((sellingPriceWithTax && unitMultiplier) ? (sellingPriceWithTax * unitMultiplier) * cantBox : 0)}
+              </span>
+              <span className={handles.price_text}>
+                Total IVA Incluido
+              </span>
+            </div>
+          </div>
+          <div className={handles.box_additional}>
+            {skuGlue !== '' && <GlueBySku sku={skuGlue} checkGlue={checkGlue} setCheckGlue={setCheckGlue} setUnitMultiplierGlue={setUnitMultiplierGlue}
+              cantGlue={cantGlue} setCantGlue={setCantGlue} setMountGlue={setMountGlue} />}
+          </div>
+          <div className={handles.box_total_price}>
+            <span className={handles.total_price_text}>
+              Total {checkGlue && '+ pegante'}
+            </span>
+            <span className={handles.total_price_amount}>
+              {formatter.format((sellingPriceWithTax && unitMultiplier) ? (((sellingPriceWithTax * unitMultiplier) * cantBox) + (checkGlue ? (mountGlue * cantGlue) : 0)) : 0)}
+            </span>
+            <span className={handles.total_price_text_b}>
+              Total IVA Incluido
+            </span>
+          </div>
+          <div className={handles.box_btn}>
+            <div className={handles.btn_content}>
+              <div className={handles.btn_img_list}>
+                <img className={handles.btn_img} src='https://ceramicaitalia.vteximg.com.br/arquivos/pagosceramica1.png' />
+              </div>
+              {/* <div className={handles.content_add_img_text}>
+                <img className={handles.content_add_img} src='https://ceramicaitalia.vteximg.com.br/arquivos/ico_ban_it.png' />
+                <span className={handles.content_add_text}>Envío Gratis</span>
+              </div> */}
+              {(!(skuFreeSample === '') || loadingFreeSample) &&
+                <button className={handles.btn_free} disabled={(skuFreeSample === '') || loadingFreeSample} onClick={() => addToCartFreeSample(showToast)}>
+                  <div className={handles.btn_free_content}>
+                    <IcoCart />
+                    {loadingFreeSample ?
+                      <Spinner color="currentColor" size={30} /> :
+                      <div className={handles.free_content_text}>
+                        <span className={handles.content_text_free}>¡Solicita tu Muestra Gratis!</span>
+                        <span className={handles.content_text_pay}>Paga el envío contra entrega</span>
+                      </div>}
+
+                  </div>
+                </button>}
+
+              <button className={handles.btn_add} disabled={loading} onClick={() => addToCartAll(showToast)}>
+                {loading ?
+                  <Spinner color="currentColor" size={30} /> :
+                  <div className={handles.btn_add_content}>
+                    <IcoCart />
+                    <span className={handles.btn_add_text}>Agregar al carrito</span>
+                  </div>
+                }
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </ToastConsumer>
+  )
+}

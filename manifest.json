@@ -1,0 +1,28 @@
+{
+  "vendor": "ceramicaitalia",
+  "name": "custom-app-calculator-pdp",
+  "version": "0.0.14",
+  "title": "custom-app-calculator-pdp",
+  "description": "custom-app-calculator-pdp",
+  "builders": {
+    "react": "3.x",
+    "messages": "1.x",
+    "store": "0.x",
+    "docs": "0.x"
+  },
+  "dependencies": {
+    "vtex.css-handles": "0.x",
+    "vtex.styleguide": "9.x",
+    "vtex.device-detector": "0.x",
+    "vtex.product-context": "0.x",
+    "vtex.react-portal": "0.x",
+    "vtex.search-graphql": "0.x",
+    "vtex.order-items": "0.x",
+    "vtex.product-summary-context": "0.x"
+  },
+  "registries": [
+    "smartcheckout"
+  ],
+  "policies": [],
+  "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
+}
