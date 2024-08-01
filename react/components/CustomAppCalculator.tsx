@@ -234,6 +234,12 @@ export const CustomAppCalculator = () => {
 
   }
 
+  const buyFromWhatsapp = async() => {
+
+    window.location.href = 'https://wa.link/haz2np';
+
+  }
+
   const addToCartFreeSample = async (showToast: any) => {
     setLoadingFreeSample(true)
     const items = []
@@ -429,7 +435,7 @@ export const CustomAppCalculator = () => {
               }
               <div className={handles.input_price}>
                 <div className={handles.container_input}>
-                  <button className={handles.btn_buy_sample} onClick={() => addToCartFreeSample(showToast)} >
+                  <button className={handles.btn_buy_sample}   onClick={() => addToCartFreeSample(showToast)} >
                     <div className={handles.free_content_text}>
                       <span className={handles.btn_add_text}>
                         <img className={handles.btn_img_whatsapp} src='https://ceramicaitalia.vtexassets.com/assets/vtex.file-manager-graphql/images/9021a85f-3898-45c8-b49a-d602437619f7___e9c6a17924b917d53bead8b3382a7b24.png' />
@@ -440,7 +446,7 @@ export const CustomAppCalculator = () => {
                   </button>
                 </div>
                 <div className={handles.container_price}>
-                  <button className={handles.btn_buy_whatsapp}  >
+                  <button className={handles.btn_buy_whatsapp}  onClick={() => buyFromWhatsapp()}  >
                     <div className={handles.btn_add_content_whatsapp}>
                       <span className={handles.btn_add_text}>
                         <img className={handles.btn_img_whatsapp} src='https://ceramicaitalia.vtexassets.com/assets/vtex.file-manager-graphql/images/9ccc95d1-6540-43bd-b6c7-8a7ccbda6901___b900370a8d6bf4c1ce8ac67712888793.png' />
