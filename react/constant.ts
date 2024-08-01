@@ -55,6 +55,9 @@ export const CSS_HANDLES = [
   "btn_add",
   "btn_add_content",
   "btn_add_text",
+  "btn_addcart",
+  "btn_addcart_content",
+  "btn_addcart_text",
   "box_additional",
   "Modal__content",
   "Modal__content_modal",
@@ -81,5 +84,15 @@ export const CSS_HANDLES = [
   "img4_modal",
   "content_modal_why_open",
   "content_modal_why_open_text",
-  "glue_input_checkbox"
+  "glue_input_checkbox",
+  "btn_buy_whatsapp",
+  "btn_add_content_whatsapp",
+  "btn_add_text_whatsapp",
+  "btn_img_whatsapp",
+  "btn_buy_sample",
+  "containercalc",
+  "columncalc",
+  "btn_quote",
+  "btn_quote_list",
+  "title_area_quote"
 ]

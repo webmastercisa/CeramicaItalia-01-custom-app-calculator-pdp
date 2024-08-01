@@ -24,3 +24,9 @@ export const IcoLess = () => (<svg xmlns="http://www.w3.org/2000/svg" width="17"
 export const IcoMore = () => (<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
     <path id="Vector" d="M8.33301 1.5V15.5M1.33301 8.5H15.333" stroke="#686868" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>)
+
+export const IcoWhatsapp = () => (<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
+    <path id="Vector" d="M8.33301 1.5V15.5M1.33301 8.5H15.333" stroke="#686868" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>)
+
+

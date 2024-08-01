@@ -1,3 +1,11 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable prettier/prettier */
+/* eslint-disable @typescript-eslint/consistent-type-imports */
+/* eslint-disable padding-line-between-statements */
+/* eslint-disable vtex/prefer-early-return */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, ChangeEvent, useContext, useEffect } from 'react'
 import { useCssHandles } from 'vtex.css-handles'
 import { ProductContext } from "vtex.product-context";
@@ -10,13 +18,15 @@ import { CSS_HANDLES, formatter, validateInputNumber } from '../constant';
 import { GlueBySku } from './GlueBySku';
 
 
+
+
 export const CustomAppCalculator = () => {
   const handles = useCssHandles(CSS_HANDLES)
   const { addItem } = useOrderItems()
   const { product, selectedItem } = useContext<ProductContextState>(ProductContext);
   const [loading, setLoading] = useState(false)
   const [loadingFreeSample, setLoadingFreeSample] = useState(false)
-  const [checkGlue, setCheckGlue] = useState(false)
+  const [checkGlue, setCheckGlue] = useState(true)
   const [skuGlue, setSkuGlue] = useState('')
   const [skuFreeSample, setSkuFreeSample] = useState('')
   const [inputMeters, setInputMeters] = useState(1)
@@ -28,6 +38,14 @@ export const CustomAppCalculator = () => {
   const [beforeCheckInput, setBeforeCheckInput] = useState(0)
   const [showCal, setShowCal] = useState(false)
   const [showWhy, setShowWhy] = useState(false)
+
+  const [inputMetersAnchoPiso, setInputMetersAnchoPiso] = useState(1)
+  const [inputMetersLargoPiso, setInputMetersLargoPiso] = useState(1)
+  const [inputMetersTotalPiso, setInputMetersTotalPiso] = useState(inputMetersAnchoPiso * inputMetersLargoPiso)
+
+  const [inputMetersAnchoPared, setInputMetersAnchoPared] = useState(1)
+  const [inputMetersAltoPared, setInputMetersAltoPared] = useState(1)
+  const [inputMetersTotalPared, setInputMetersTotalPared] = useState(inputMetersAnchoPared * inputMetersAltoPared)
   useEffect(() => {
     if (product) {
       const Glue = product.properties.find((pro) => pro.name === 'Id SKU Pegante')
@@ -65,6 +83,99 @@ export const CustomAppCalculator = () => {
 
   }
 
+  const inputChangeCalculator = (meters: number) => {
+
+    const inputNumber = meters
+
+    setInputMeters(inputNumber)
+    setCheckMore(false)
+    if (unitMultiplier) {
+      const boxCount = Math.ceil(inputNumber / unitMultiplier)
+      setCantBox(boxCount)
+      const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))
+
+      setCantGlue(glue)
+    }
+
+  }
+
+  const inputChangeAnchoPiso = (input: ChangeEvent<HTMLInputElement>) => {
+    const { value } = input.target
+    const inputNumber = validateInputNumber(value) ? parseInt(value) : value === '' ? 0 : inputMeters !== 0 ? inputMeters : 0
+
+    setInputMetersAnchoPiso(inputNumber)
+    setCheckMore(false)
+    const totalAnchopiso = inputNumber * inputMetersLargoPiso
+    setInputMetersTotalPiso(totalAnchopiso)
+
+  }
+
+  const inputChangeLargoPiso = (input: ChangeEvent<HTMLInputElement>) => {
+    const { value } = input.target
+    const inputNumber = validateInputNumber(value) ? parseInt(value) : value === '' ? 0 : inputMeters !== 0 ? inputMeters : 0
+
+    setInputMetersLargoPiso(inputNumber)
+    setCheckMore(false)
+    const totalLargoPiso = inputNumber * inputMetersAnchoPiso
+    setInputMetersTotalPiso(totalLargoPiso)
+
+  }
+
+
+
+  const inputChangeAnchoPared = (input: ChangeEvent<HTMLInputElement>) => {
+    const { value } = input.target
+    const inputNumber = validateInputNumber(value) ? parseInt(value) : value === '' ? 0 : inputMeters !== 0 ? inputMeters : 0
+
+    setInputMetersAnchoPared(inputNumber)
+    const totalAnchoPared = inputNumber * inputMetersAltoPared
+    setInputMetersTotalPared(totalAnchoPared)
+
+  }
+
+
+  const inputChangeAltoPared = (input: ChangeEvent<HTMLInputElement>) => {
+    const { value } = input.target
+    const inputNumber = validateInputNumber(value) ? parseInt(value) : value === '' ? 0 : inputMeters !== 0 ? inputMeters : 0
+
+    setInputMetersAltoPared(inputNumber)
+    const totalAltoPared = inputMetersAnchoPared * inputNumber
+    setInputMetersTotalPared(totalAltoPared)
+
+
+  }
+
+  const inputChangeTotalPared = (input: ChangeEvent<HTMLInputElement>) => {
+    const { value } = input.target
+    const inputNumber = validateInputNumber(value) ? parseInt(value) : value === '' ? 0 : inputMeters !== 0 ? inputMeters : 0
+
+    setInputMetersTotalPared(inputNumber)
+    setCheckMore(false)
+    if (unitMultiplier) {
+      const boxCount = Math.ceil(inputNumber / unitMultiplier)
+      setCantBox(boxCount)
+      const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))
+
+      setCantGlue(glue)
+    }
+
+  }
+  const inputChangeTotalPiso = (input: ChangeEvent<HTMLInputElement>) => {
+    const { value } = input.target
+    const inputNumber = validateInputNumber(value) ? parseInt(value) : value === '' ? 0 : inputMeters !== 0 ? inputMeters : 0
+
+    setInputMetersTotalPiso(inputNumber)
+    setCheckMore(false)
+    if (unitMultiplier) {
+      const boxCount = Math.ceil(inputNumber / unitMultiplier)
+      setCantBox(boxCount)
+      const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))
+
+      setCantGlue(glue)
+    }
+
+  }
+
   const checkMoreCant = () => {
     if (checkMore) {
       setInputMeters(beforeCheckInput)
@@ -87,6 +198,7 @@ export const CustomAppCalculator = () => {
     }
     setCheckMore(!checkMore)
   }
+
   const addToCartAll = async (showToast: any) => {
     setLoading(true)
     const items = [
@@ -96,6 +208,7 @@ export const CustomAppCalculator = () => {
         seller: '1'
       }
     ]
+
     if (skuGlue !== '' && cantGlue > 0 && checkGlue) {
       items.push({
         id: skuGlue,
@@ -103,6 +216,7 @@ export const CustomAppCalculator = () => {
         seller: '1'
       })
     }
+
     await addItem(items)
     setLoading(false)
     showToast({
@@ -111,6 +225,15 @@ export const CustomAppCalculator = () => {
       horizontalPosition: 'left',
     })
   }
+
+  const Quote = async () => {
+    const sumMeters = inputMetersTotalPiso + inputMetersTotalPared
+    inputChangeCalculator(sumMeters)
+    setShowCal(!showCal)
+
+
+  }
+
   const addToCartFreeSample = async (showToast: any) => {
     setLoadingFreeSample(true)
     const items = []
@@ -129,6 +252,7 @@ export const CustomAppCalculator = () => {
       horizontalPosition: 'left',
     })
   }
+
   return (
     <ToastConsumer>
       {({ showToast }: any) => (
@@ -141,6 +265,64 @@ export const CustomAppCalculator = () => {
               <input className={handles.input} value={inputMeters} onChange={inputChange} />
               <div className={handles.content_modal_met}>
                 <span className={handles.content_modal_met_text} onClick={() => setShowCal(true)}>
+                  ¿Cómo calculo el metraje? usa nuestra calculadora
+                </span>
+                <Modal show={showCal} setShow={setShowCal} >
+                  {/* <div className={handles.modal_open}> */}
+                  <div  className={handles.title_area_quote}>
+                  <span >Cotiza tu Espacio</span>
+                  </div>
+                  
+                  <div className={handles.containercalc}>
+                  
+                    <div className={handles.columncalc}>
+                    
+                      <div className={handles.title_area_quote}><span>Piso</span></div>
+                      <span className={handles.input_text}>
+                        Ingresa Ancho en metros
+                      </span>
+                      <input className={handles.input} value={inputMetersAnchoPiso} onChange={inputChangeAnchoPiso} />
+                      <span className={handles.input_text}>
+                        Ingresa Largo en metros
+                      </span>
+                      <input className={handles.input} value={inputMetersLargoPiso} onChange={inputChangeLargoPiso} />
+                      <span className={handles.input_text}>
+                        Total Piso m2
+                      </span>
+                      <input className={handles.input} value={inputMetersTotalPiso} onChange={inputChangeTotalPiso} />
+                    </div>
+                    <div className={handles.columncalc}>
+                    <div className={handles.title_area_quote}><span>Pared</span></div>
+                      <span className={handles.input_text}>
+                        Ingresa Ancho en metros
+                      </span>
+                      <input className={handles.input} value={inputMetersAnchoPared} onChange={inputChangeAnchoPared} />
+                      <span className={handles.input_text}>
+                        Ingresa Alto en metros
+                      </span>
+                      <input className={handles.input} value={inputMetersAltoPared} onChange={inputChangeAltoPared} />
+                      <span className={handles.input_text}>
+                        Total Pared m2
+                      </span>
+                      <input className={handles.input} value={inputMetersTotalPared} onChange={inputChangeTotalPared} />
+                    </div>
+                    <div className={handles.btn_quote_list}>
+                      <button className={handles.btn_quote} disabled={loading} onClick={() => Quote()}>
+                        <span className={handles.btn_add_text}>Cotizar</span>
+                      </button>
+                    </div>
+
+                  </div>
+                    
+                  {/* </div> */}
+
+                 
+
+                  
+                </Modal>
+              </div>
+              {/* <div className={handles.content_modal_met}>
+                <span className={handles.content_modal_met_text} onClick={() => setShowCal(true)}>
                   ¿Cómo calculo el metraje?
                 </span>
                 <Modal show={showCal} setShow={setShowCal} >
@@ -150,8 +332,8 @@ export const CustomAppCalculator = () => {
                     <img src="https://ceramicaitalia.vteximg.com.br/arquivos/Tarjeta-metraje-03.png" alt="calcular metraje" className={handles.img3_modal} />
                     <img src="https://ceramicaitalia.vteximg.com.br/arquivos/Tarjeta-metraje-04.png" alt="calcular metraje" className={handles.img4_modal} />
                   </div>
-                </Modal>
-              </div>
+                </Modal>              
+              </div> */}
             </div>
             <div className={handles.container_price}>
               <div className={handles.text_price}>
@@ -216,7 +398,21 @@ export const CustomAppCalculator = () => {
                 <img className={handles.content_add_img} src='https://ceramicaitalia.vteximg.com.br/arquivos/ico_ban_it.png' />
                 <span className={handles.content_add_text}>Envío Gratis</span>
               </div> */}
+              <div className={handles.btn_img_list}>
+                <button className={handles.btn_add} disabled={loading} onClick={() => addToCartAll(showToast)}>
+                  {loading ?
+                    <Spinner color="currentColor" size={30} /> :
+                    <div className={handles.btn_add_content}>
+                      <IcoCart />
+                      <span className={handles.btn_add_text}>Añadir al carrito</span>
+                    </div>
+                  }
+                </button>
+              </div>
+
               {(!(skuFreeSample === '') || loadingFreeSample) &&
+
+
                 <button className={handles.btn_free} disabled={(skuFreeSample === '') || loadingFreeSample} onClick={() => addToCartFreeSample(showToast)}>
                   <div className={handles.btn_free_content}>
                     <IcoCart />
@@ -228,18 +424,35 @@ export const CustomAppCalculator = () => {
                       </div>}
 
                   </div>
-                </button>}
+                </button>
 
-              <button className={handles.btn_add} disabled={loading} onClick={() => addToCartAll(showToast)}>
-                {loading ?
-                  <Spinner color="currentColor" size={30} /> :
-                  <div className={handles.btn_add_content}>
-                    <IcoCart />
-                    <span className={handles.btn_add_text}>Agregar al carrito</span>
-                  </div>
-                }
-              </button>
+              }
+              <div className={handles.input_price}>
+                <div className={handles.container_input}>
+                  <button className={handles.btn_buy_sample} onClick={() => addToCartFreeSample(showToast)} >
+                    <div className={handles.free_content_text}>
+                      <span className={handles.btn_add_text}>
+                        <img className={handles.btn_img_whatsapp} src='https://ceramicaitalia.vtexassets.com/assets/vtex.file-manager-graphql/images/9021a85f-3898-45c8-b49a-d602437619f7___e9c6a17924b917d53bead8b3382a7b24.png' />
+                        ¡Solicita tu Muestra Gratis!
+                      </span>
+                      <span className={handles.btn_add_text_whatsapp}>Paga el envío contra entrega</span>
+                    </div>
+                  </button>
+                </div>
+                <div className={handles.container_price}>
+                  <button className={handles.btn_buy_whatsapp}  >
+                    <div className={handles.btn_add_content_whatsapp}>
+                      <span className={handles.btn_add_text}>
+                        <img className={handles.btn_img_whatsapp} src='https://ceramicaitalia.vtexassets.com/assets/vtex.file-manager-graphql/images/9ccc95d1-6540-43bd-b6c7-8a7ccbda6901___b900370a8d6bf4c1ce8ac67712888793.png' />
+                        Compra por whatsapp<br />
+                      </span>
+                      <span className={handles.btn_add_text_whatsapp}>hablar con un asesor</span>
+                    </div>
+                  </button>
+                </div>
+              </div>
             </div>
+
           </div>
         </div>
       )}
