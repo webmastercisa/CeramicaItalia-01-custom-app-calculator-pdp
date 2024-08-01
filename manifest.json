@@ -1,7 +1,7 @@
 {
   "vendor": "ceramicaitalia",
   "name": "custom-app-calculator-pdp",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "title": "custom-app-calculator-pdp",
   "description": "custom-app-calculator-pdp",
   "builders": {
@@ -20,9 +20,7 @@
     "vtex.order-items": "0.x",
     "vtex.product-summary-context": "0.x"
   },
-  "registries": [
-    "smartcheckout"
-  ],
+  "registries": ["smartcheckout"],
   "policies": [],
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }
