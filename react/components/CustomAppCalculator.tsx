@@ -41,11 +41,11 @@ export const CustomAppCalculator = () => {
 
   const [inputMetersAnchoPiso, setInputMetersAnchoPiso] = useState(1)
   const [inputMetersLargoPiso, setInputMetersLargoPiso] = useState(1)
-  const [inputMetersTotalPiso, setInputMetersTotalPiso] = useState(inputMetersAnchoPiso * inputMetersLargoPiso)
+  const [inputMetersTotalPiso, setInputMetersTotalPiso] = useState(0)
 
   const [inputMetersAnchoPared, setInputMetersAnchoPared] = useState(1)
   const [inputMetersAltoPared, setInputMetersAltoPared] = useState(1)
-  const [inputMetersTotalPared, setInputMetersTotalPared] = useState(inputMetersAnchoPared * inputMetersAltoPared)
+  const [inputMetersTotalPared, setInputMetersTotalPared] = useState(0)
   useEffect(() => {
     if (product) {
       const Glue = product.properties.find((pro) => pro.name === 'Id SKU Pegante')
@@ -236,7 +236,7 @@ export const CustomAppCalculator = () => {
 
   const buyFromWhatsapp = async () => {
 
-    window.location.href = 'https://wa.link/haz2np';
+    window.location.href = 'https://cutt.ly/cexPOtcZ';
 
   }
 
@@ -443,8 +443,11 @@ export const CustomAppCalculator = () => {
                       </button>
                     </div>
                   </div>
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> ad2282c3787683078ead69be04d2bc0359b0ed72
                 </div>
 
 
@@ -466,9 +469,15 @@ export const CustomAppCalculator = () => {
               }
 
               {((skuFreeSample === '')) &&
+<<<<<<< HEAD
+                
+                <div className={handles.btn_img_list}>
+                  <button className={handles.btn_add_with_whatsapp} disabled={loading} onClick={() => addToCartAll(showToast)}>
+=======
 
                 <div className={handles.btn_img_list}>
                   <button className={handles.btn_add} disabled={loading} onClick={() => addToCartAll(showToast)}>
+>>>>>>> ad2282c3787683078ead69be04d2bc0359b0ed72
                     {loading ?
                       <Spinner color="currentColor" size={30} /> :
                       <div className={handles.btn_add_content}>
@@ -477,6 +486,18 @@ export const CustomAppCalculator = () => {
                       </div>
                     }
                   </button>
+<<<<<<< HEAD
+                  <button className={handles.btn_whatsapp_buy} onClick={() => buyFromWhatsapp()}>
+                    <div className={handles.btn_free_content}>
+                      <img className={handles.btn_img_whatsapp} src='https://ceramicaitalia.vtexassets.com/assets/vtex.file-manager-graphql/images/9ccc95d1-6540-43bd-b6c7-8a7ccbda6901___b900370a8d6bf4c1ce8ac67712888793.png' />
+                      <div className={handles.free_content_text}>
+                        <span className={handles.content_text_free}>Compra por whatsapp</span>
+                        <span className={handles.content_text_pay}>hablar con un asesor</span>
+                      </div>
+                    </div>
+                  </button>
+=======
+>>>>>>> ad2282c3787683078ead69be04d2bc0359b0ed72
                 </div>
               }
 

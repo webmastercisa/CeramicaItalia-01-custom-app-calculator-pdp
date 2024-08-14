@@ -94,5 +94,7 @@ export const CSS_HANDLES = [
   "columncalc",
   "btn_quote",
   "btn_quote_list",
-  "title_area_quote"
+  "title_area_quote",
+  "btn_whatsapp_buy",
+  "btn_add_with_whatsapp"
 ]
