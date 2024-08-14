@@ -338,7 +338,7 @@ export const CustomAppCalculator = () => {
                     <img src="https://ceramicaitalia.vteximg.com.br/arquivos/Tarjeta-metraje-03.png" alt="calcular metraje" className={handles.img3_modal} />
                     <img src="https://ceramicaitalia.vteximg.com.br/arquivos/Tarjeta-metraje-04.png" alt="calcular metraje" className={handles.img4_modal} />
                   </div>
-                </Modal>              
+                </Modal>
               </div> */}
             </div>
             <div className={handles.container_price}>
@@ -443,6 +443,11 @@ export const CustomAppCalculator = () => {
                       </button>
                     </div>
                   </div>
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> ad2282c3787683078ead69be04d2bc0359b0ed72
                 </div>
 
 
@@ -464,9 +469,15 @@ export const CustomAppCalculator = () => {
               }
 
               {((skuFreeSample === '')) &&
+<<<<<<< HEAD
                 
                 <div className={handles.btn_img_list}>
                   <button className={handles.btn_add_with_whatsapp} disabled={loading} onClick={() => addToCartAll(showToast)}>
+=======
+
+                <div className={handles.btn_img_list}>
+                  <button className={handles.btn_add} disabled={loading} onClick={() => addToCartAll(showToast)}>
+>>>>>>> ad2282c3787683078ead69be04d2bc0359b0ed72
                     {loading ?
                       <Spinner color="currentColor" size={30} /> :
                       <div className={handles.btn_add_content}>
@@ -475,6 +486,7 @@ export const CustomAppCalculator = () => {
                       </div>
                     }
                   </button>
+<<<<<<< HEAD
                   <button className={handles.btn_whatsapp_buy} onClick={() => buyFromWhatsapp()}>
                     <div className={handles.btn_free_content}>
                       <img className={handles.btn_img_whatsapp} src='https://ceramicaitalia.vtexassets.com/assets/vtex.file-manager-graphql/images/9ccc95d1-6540-43bd-b6c7-8a7ccbda6901___b900370a8d6bf4c1ce8ac67712888793.png' />
@@ -484,9 +496,11 @@ export const CustomAppCalculator = () => {
                       </div>
                     </div>
                   </button>
+=======
+>>>>>>> ad2282c3787683078ead69be04d2bc0359b0ed72
                 </div>
               }
-             
+
             </div>
 
           </div>
