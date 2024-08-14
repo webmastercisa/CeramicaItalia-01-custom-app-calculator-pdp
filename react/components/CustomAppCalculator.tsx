@@ -26,7 +26,7 @@ export const CustomAppCalculator = () => {
   const { product, selectedItem } = useContext<ProductContextState>(ProductContext);
   const [loading, setLoading] = useState(false)
   const [loadingFreeSample, setLoadingFreeSample] = useState(false)
-  const [checkGlue, setCheckGlue] = useState(true)
+  const [checkGlue, setCheckGlue] = useState(false)
   const [skuGlue, setSkuGlue] = useState('')
   const [skuFreeSample, setSkuFreeSample] = useState('')
   const [inputMeters, setInputMeters] = useState(1)
