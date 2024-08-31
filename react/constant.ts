@@ -97,3 +97,4 @@ export const CSS_HANDLES = [
   "title_area_quote",
   "btn_whatsapp_buy",
   "btn_add_with_whatsapp"
+]
