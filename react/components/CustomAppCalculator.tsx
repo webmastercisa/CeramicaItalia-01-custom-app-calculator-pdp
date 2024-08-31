@@ -512,8 +512,6 @@ export const CustomAppCalculator = () => {
 
 
 
-
-
             </div>
 
           </div>
