@@ -40,11 +40,11 @@ export const CustomAppCalculator = () => {
 
   const [inputMetersAnchoPiso, setInputMetersAnchoPiso] = useState(1)
   const [inputMetersLargoPiso, setInputMetersLargoPiso] = useState(1)
-  const [inputMetersTotalPiso, setInputMetersTotalPiso] = useState(inputMetersAnchoPiso * inputMetersLargoPiso)
+  const [inputMetersTotalPiso, setInputMetersTotalPiso] = useState(0)
 
   const [inputMetersAnchoPared, setInputMetersAnchoPared] = useState(1)
   const [inputMetersAltoPared, setInputMetersAltoPared] = useState(1)
-  const [inputMetersTotalPared, setInputMetersTotalPared] = useState(inputMetersAnchoPared * inputMetersAltoPared)
+  const [inputMetersTotalPared, setInputMetersTotalPared] = useState(0)
   useEffect(() => {
     if (product) {
       //const Glue = product.properties.find((pro) => pro.name === 'Id SKU Pegante')  //============   02.637.443
@@ -457,7 +457,6 @@ export const CustomAppCalculator = () => {
 
                   </div>
 
-
                 </div>
 
 
@@ -481,9 +480,11 @@ export const CustomAppCalculator = () => {
 
 
               {((skuFreeSample === '')) &&
-
                 <div className={handles.btn_img_list}>
                   <button className={handles.btn_add_with_whatsapp} disabled={loading} onClick={() => addToCartAll(showToast)}>
+                <div className={handles.btn_img_list}>
+                  <button className={handles.btn_add_with_whatsapp} disabled={loading} onClick={() => addToCartAll(showToast)}>
+                  <button className={handles.btn_add} disabled={loading} onClick={() => addToCartAll(showToast)}>
                     {loading ?
                       <Spinner color="currentColor" size={30} /> :
                       <div className={handles.btn_add_content}>
@@ -495,12 +496,17 @@ export const CustomAppCalculator = () => {
                   <button className={handles.btn_whatsapp_buy} onClick={() => buyFromWhatsapp()}>
                     <div className={handles.btn_free_content}>
                       <img className={handles.btn_img_whatsapp} src='https://ceramicaitalia.vtexassets.com/assets/vtex.file-manager-graphql/images/a5d48e97-6888-4da6-a219-084e1f0c552e___32c7001dd8ef25cbf0ea5469117d0b89.png' />
+                  <button className={handles.btn_whatsapp_buy} onClick={() => buyFromWhatsapp()}>
+                    <div className={handles.btn_free_content}>
+                      <img className={handles.btn_img_whatsapp} src='https://ceramicaitalia.vtexassets.com/assets/vtex.file-manager-graphql/images/9ccc95d1-6540-43bd-b6c7-8a7ccbda6901___b900370a8d6bf4c1ce8ac67712888793.png' />
                       <div className={handles.free_content_text}>
                         <span className={handles.content_text_free}>Compra por whatsapp</span>
                         <span className={handles.content_text_pay}>hablar con un asesor</span>
                       </div>
                     </div>
                   </button>
+
+
                 </div>
               }
 

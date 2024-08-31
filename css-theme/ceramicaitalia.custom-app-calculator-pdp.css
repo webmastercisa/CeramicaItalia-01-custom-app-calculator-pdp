@@ -59,7 +59,22 @@
 
 .text_price_price_top {
   vertical-align: super;
+
+.content_modal_met_text{
+    font-family: Adobe Clean;
+    color: #ED1B24;
+    font-size: 13px;
+    font-weight: 350;
+    cursor: pointer;
+    padding: 10px 0;
+    font-style: normal;
+    line-height: normal;
 }
+.input_radius{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
 
 .text_price_mount {
   color: #000;
@@ -85,6 +100,7 @@
   width: 100%;
 }
 
+
 .content_modal_met_text {
   font-family: Adobe Clean;
   color: #ED1B24;
@@ -94,6 +110,76 @@
   padding: 5px 0;
   font-style: normal;
   line-height: normal;
+
+.btn_img_list{
+    min-width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    height: 33px;
+}
+.btn_img{
+}
+.btn_whatsapp_buy{
+    width: 50%;
+    background-color: #fff;
+    border: 1px solid #6FC745;
+    border-radius: 100px;
+    height: 48px;
+    color: #6FC745;
+    cursor: pointer;
+    transition: color .25s ease-in-out,background-color .25s ease-in-out;
+}
+.btn_whatsapp_buy:hover{
+    background-color: #6FC77D;
+    color: #fff;
+    transition: color .25s ease-in-out,background-color .25s ease-in-out;
+}
+
+.btn_add_with_whatsapp{
+    width: 50%;
+    background-color: #fff;
+    border: 1px solid #ED1B24;
+    border-radius: 100px;
+    height: 48px;
+    color: #ED1B24;
+    cursor: pointer;
+    transition: color .25s ease-in-out,background-color .25s ease-in-out;
+
+}
+.btn_add_with_whatsapp:hover{
+    color: #fff;
+    background-color: #ED1B24;
+    transition: color .35s ease-in-out,background-color .35s ease-in-out;
+  }
+
+.btn_free{
+    width: 48%;
+    background-color: #fff;
+    border: 1px solid #ED1B24;
+    border-radius: 100px;
+    height: 48px;
+    color: #ED1B24;
+    cursor: pointer;
+    transition: color .25s ease-in-out,background-color .25s ease-in-out;
+}
+.btn_free:hover{
+    background-color: #ED1B24;
+    color: #fff;
+    transition: color .25s ease-in-out,background-color .25s ease-in-out;
+}
+.btn_free:disabled{
+    background-color: #b3b3b3;
+    border: 1px solid #b3b3b3;
+    color: #fff;
+    cursor: initial;
+}
+.btn_free_content{
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .input_radius {
@@ -256,6 +342,69 @@
   align-items: center;
   gap: 15px;
   height: 33px;
+=======
+.content_text_free{
+    font-family: Adobe Clean;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.content_text_pay{
+    font-family: Adobe Clean;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.content_add_img_text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    height: 33px;
+}
+.content_add_img{
+    width: 56px;
+}
+.content_add_text{
+    font-size: 18px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    color: #686868;
+}
+.btn_add{
+    width: 50%;
+    background-color: #ED1B24;
+    border: 1px solid #ED1B24;
+    border-radius: 100px;
+    padding: 8px;
+    height: 48px;
+    color: #fff;
+    cursor: pointer;
+    transition: color .35s ease-in-out,background-color .35s ease-in-out;
+}
+.btn_add:hover{
+    background-color: #fff;
+    color: #ED1B24;
+    transition: color .35s ease-in-out,background-color .35s ease-in-out;
+}
+.btn_add:disabled{
+    background-color: #b3b3b3;
+    border: 1px solid #b3b3b3;
+    color: #fff;
+    cursor: initial;
+}
+.btn_add_content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.btn_add_text{
+    display: flex;
+    align-items: center
 }
 
 .btn_img {}
