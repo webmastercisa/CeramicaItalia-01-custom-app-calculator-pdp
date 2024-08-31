@@ -478,47 +478,36 @@ export const CustomAppCalculator = () => {
               }
 
 
-
               {((skuFreeSample === '')) &&
+
                 <div className={handles.btn_img_list}>
                   <button className={handles.btn_add_with_whatsapp} disabled={loading} onClick={() => addToCartAll(showToast)}>
-                    <div className={handles.btn_img_list}>
-                      <button className={handles.btn_add_with_whatsapp} disabled={loading} onClick={() => addToCartAll(showToast)}>
-                        <button className={handles.btn_add} disabled={loading} onClick={() => addToCartAll(showToast)}>
-                          {loading ?
-                            <Spinner color="currentColor" size={30} /> :
-                            <div className={handles.btn_add_content}>
-                              <IcoCart />
-                              <span className={handles.btn_add_text}>Añadir al carrito</span>
-                            </div>
-                          }
-                        </button>
-                        <button className={handles.btn_whatsapp_buy} onClick={() => buyFromWhatsapp()}>
-                          <div className={handles.btn_free_content}>
-                            <img className={handles.btn_img_whatsapp} src='https://ceramicaitalia.vtexassets.com/assets/vtex.file-manager-graphql/images/a5d48e97-6888-4da6-a219-084e1f0c552e___32c7001dd8ef25cbf0ea5469117d0b89.png' />
-                            <button className={handles.btn_whatsapp_buy} onClick={() => buyFromWhatsapp()}>
-                              <div className={handles.btn_free_content}>
-                                <img className={handles.btn_img_whatsapp} src='https://ceramicaitalia.vtexassets.com/assets/vtex.file-manager-graphql/images/9ccc95d1-6540-43bd-b6c7-8a7ccbda6901___b900370a8d6bf4c1ce8ac67712888793.png' />
-                                <div className={handles.free_content_text}>
-                                  <span className={handles.content_text_free}>Compra por whatsapp</span>
-                                  <span className={handles.content_text_pay}>hablar con un asesor</span>
-                                </div>
-                              </div>
-                            </button>
-
-
-                          </div>
+                    {loading ?
+                      <Spinner color="currentColor" size={30} /> :
+                      <div className={handles.btn_add_content}>
+                        <IcoCart />
+                        <span className={handles.btn_add_text}>Añadir al carrito</span>
+                      </div>
+                    }
+                  </button>
+                  <button className={handles.btn_whatsapp_buy} onClick={() => buyFromWhatsapp()}>
+                    <div className={handles.btn_free_content}>
+                      <img className={handles.btn_img_whatsapp} src='https://ceramicaitalia.vtexassets.com/assets/vtex.file-manager-graphql/images/9ccc95d1-6540-43bd-b6c7-8a7ccbda6901___b900370a8d6bf4c1ce8ac67712888793.png' />
+                      <div className={handles.free_content_text}>
+                        <span className={handles.content_text_free}>Compra por whatsapp</span>
+                        <span className={handles.content_text_pay}>hablar con un asesor</span>
+                      </div>
+                    </div>
+                  </button>
+                </div>
               }
 
+            </div>
+          </div>
 
+        </div>
 
-
-
-                        </div>
-
-                    </div>
-                </div>
       )}
-            </ToastConsumer>
-            )
+    </ToastConsumer>
+  )
 }
