@@ -15,7 +15,9 @@ import { IcoAlert, IcoCart } from '../svg/Icos'
 import { Modal } from '../Atom/Modal'
 import { ProductContextState } from '../typings/ProductType';
 import { CSS_HANDLES, formatter, validateInputNumber } from '../constant';
-//import { GlueBySku } from './GlueBySku';  //============   02.637.443
+import { GlueBySku } from './GlueBySku';
+
+
 
 
 export const CustomAppCalculator = () => {
@@ -24,19 +26,18 @@ export const CustomAppCalculator = () => {
   const { product, selectedItem } = useContext<ProductContextState>(ProductContext);
   const [loading, setLoading] = useState(false)
   const [loadingFreeSample, setLoadingFreeSample] = useState(false)
-  //const [checkGlue, setCheckGlue] = useState(false)  //============   02.637.443
-  //const [skuGlue, setSkuGlue] = useState('')    //============   02.637.443
+  const [checkGlue, setCheckGlue] = useState(false)
+  const [skuGlue, setSkuGlue] = useState('')
   const [skuFreeSample, setSkuFreeSample] = useState('')
   const [inputMeters, setInputMeters] = useState(1)
   const [cantBox, setCantBox] = useState(1)
-  //const [cantGlue, setCantGlue] = useState(1)  //============   02.637.443
-  //const [unitMultiplierGlue, setUnitMultiplierGlue] = useState(0)  //============   02.637.443
-  //const [mountGlue, setMountGlue] = useState(0)  //============   02.637.443
+  const [cantGlue, setCantGlue] = useState(1)
+  const [unitMultiplierGlue, setUnitMultiplierGlue] = useState(0)
+  const [mountGlue, setMountGlue] = useState(0)
   const [checkMore, setCheckMore] = useState(false)
   const [beforeCheckInput, setBeforeCheckInput] = useState(0)
   const [showCal, setShowCal] = useState(false)
   const [showWhy, setShowWhy] = useState(false)
-
 
   const [inputMetersAnchoPiso, setInputMetersAnchoPiso] = useState(1)
   const [inputMetersLargoPiso, setInputMetersLargoPiso] = useState(1)
@@ -47,16 +48,15 @@ export const CustomAppCalculator = () => {
   const [inputMetersTotalPared, setInputMetersTotalPared] = useState(0)
   useEffect(() => {
     if (product) {
-      //const Glue = product.properties.find((pro) => pro.name === 'Id SKU Pegante')  //============   02.637.443
-      //if (Glue && Glue.values.length > 0) {  //============   02.637.443
-      //        setSkuGlue(Glue.values[0])  //============   02.637.443
-      //}
+      const Glue = product.properties.find((pro) => pro.name === 'Id SKU Pegante')
+      if (Glue && Glue.values.length > 0) {
+        setSkuGlue(Glue.values[0])
+      }
       const FreeSample = product.properties.find((pro) => pro.name === 'Id Muestra')
       if (FreeSample && FreeSample.values.length > 0) {
         setSkuFreeSample(FreeSample.values[0])
       }
     }
-
   }, [product])
 
   const unitMultiplier = selectedItem?.unitMultiplier
@@ -76,9 +76,9 @@ export const CustomAppCalculator = () => {
     if (unitMultiplier) {
       const boxCount = Math.ceil(inputNumber / unitMultiplier)
       setCantBox(boxCount)
-      //const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))  //============   02.637.443
+      const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))
 
-      //setCantGlue(glue)  //============   02.637.443
+      setCantGlue(glue)
     }
 
   }
@@ -92,9 +92,9 @@ export const CustomAppCalculator = () => {
     if (unitMultiplier) {
       const boxCount = Math.ceil(inputNumber / unitMultiplier)
       setCantBox(boxCount)
-      //const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))  //============   02.637.443
+      const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))
 
-      //setCantGlue(glue)  //============   02.637.443
+      setCantGlue(glue)
     }
 
   }
@@ -154,9 +154,9 @@ export const CustomAppCalculator = () => {
     if (unitMultiplier) {
       const boxCount = Math.ceil(inputNumber / unitMultiplier)
       setCantBox(boxCount)
-      //const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))  //============   02.637.443
+      const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))
 
-      //setCantGlue(glue)  //============   02.637.443
+      setCantGlue(glue)
     }
 
   }
@@ -169,9 +169,9 @@ export const CustomAppCalculator = () => {
     if (unitMultiplier) {
       const boxCount = Math.ceil(inputNumber / unitMultiplier)
       setCantBox(boxCount)
-      //const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))  //============   02.637.443
+      const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))
 
-      //setCantGlue(glue)  //============   02.637.443
+      setCantGlue(glue)
     }
 
   }
@@ -182,8 +182,8 @@ export const CustomAppCalculator = () => {
       if (unitMultiplier) {
         const boxCount = Math.ceil(beforeCheckInput / unitMultiplier)
         setCantBox(boxCount)
-        //const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))  //============   02.637.443
-        //setCantGlue(glue)  //============   02.637.443
+        const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))
+        setCantGlue(glue)
       }
     } else {
       setBeforeCheckInput(inputMeters)
@@ -192,8 +192,8 @@ export const CustomAppCalculator = () => {
       if (unitMultiplier) {
         const boxCount = Math.ceil(result / unitMultiplier)
         setCantBox(boxCount)
-        //const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))  //============   02.637.443
-        //setCantGlue(glue)  //============   02.637.443
+        const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))
+        setCantGlue(glue)
       }
     }
     setCheckMore(!checkMore)
@@ -209,15 +209,13 @@ export const CustomAppCalculator = () => {
       }
     ]
 
-    /*     //============   02.637.443
-     if (skuGlue !== '' && cantGlue > 0 && checkGlue) {
-       items.push({
-         id: skuGlue,
-         quantity: cantGlue,
-         seller: '1'
-       })
-     }
-     */
+    if (skuGlue !== '' && cantGlue > 0 && checkGlue) {
+      items.push({
+        id: skuGlue,
+        quantity: cantGlue,
+        seller: '1'
+      })
+    }
 
     await addItem(items)
     setLoading(false)
@@ -236,11 +234,11 @@ export const CustomAppCalculator = () => {
 
   }
 
-  const buyFromWhatsapp = async () => {
-    window.location.href = 'https://wa.link/haz2np';
-  }
+  // const buyFromWhatsapp = async () => {
 
+  //   window.location.href = 'https://cutt.ly/cexPOtcZ';
 
+  // }
 
   const addToCartFreeSample = async (showToast: any) => {
     setLoadingFreeSample(true)
@@ -382,14 +380,10 @@ export const CustomAppCalculator = () => {
               </span>
             </div>
           </div>
-          {/*
           <div className={handles.box_additional}>
             {skuGlue !== '' && <GlueBySku sku={skuGlue} checkGlue={checkGlue} setCheckGlue={setCheckGlue} setUnitMultiplierGlue={setUnitMultiplierGlue}
               cantGlue={cantGlue} setCantGlue={setCantGlue} setMountGlue={setMountGlue} />}
           </div>
-          */}
-
-          {/*
           <div className={handles.box_total_price}>
             <span className={handles.total_price_text}>
               Total {checkGlue && '+ pegante'}
@@ -401,9 +395,6 @@ export const CustomAppCalculator = () => {
               Total IVA Incluido
             </span>
           </div>
-          */}
-
-
           <div className={handles.box_btn}>
             <div className={handles.btn_content}>
               <div className={handles.btn_img_list}>
@@ -416,7 +407,7 @@ export const CustomAppCalculator = () => {
 
 
               {(!(skuFreeSample === '') || loadingFreeSample) &&
-                <div>
+                <>
                   <div className={handles.btn_img_list}>
                     <button className={handles.btn_add} disabled={loading} onClick={() => addToCartAll(showToast)}>
                       {loading ?
@@ -428,8 +419,6 @@ export const CustomAppCalculator = () => {
                       }
                     </button>
                   </div>
-
-
                   <div className={handles.input_price}>
                     <div className={handles.container_input}>
                       <button className={handles.btn_buy_sample} onClick={() => addToCartFreeSample(showToast)} >
@@ -442,8 +431,7 @@ export const CustomAppCalculator = () => {
                         </div>
                       </button>
                     </div>
-
-                    <div className={handles.container_price}>
+                    {/* <div className={handles.container_price}>
                       <button className={handles.btn_buy_whatsapp} onClick={() => buyFromWhatsapp()}  >
                         <div className={handles.btn_add_content_whatsapp}>
                           <span className={handles.btn_add_text}>
@@ -453,11 +441,9 @@ export const CustomAppCalculator = () => {
                           <span className={handles.btn_add_text_whatsapp}>hablar con un asesor</span>
                         </div>
                       </button>
-                    </div>
-
+                    </div> */}
                   </div>
-
-                </div>
+                </>
 
 
 
@@ -477,11 +463,10 @@ export const CustomAppCalculator = () => {
 
               }
 
-
               {((skuFreeSample === '')) &&
 
                 <div className={handles.btn_img_list}>
-                  <button className={handles.btn_add_with_whatsapp} disabled={loading} onClick={() => addToCartAll(showToast)}>
+                  <button className={handles.btn_add} disabled={loading} onClick={() => addToCartAll(showToast)}>
                     {loading ?
                       <Spinner color="currentColor" size={30} /> :
                       <div className={handles.btn_add_content}>
@@ -490,23 +475,13 @@ export const CustomAppCalculator = () => {
                       </div>
                     }
                   </button>
-                  <button className={handles.btn_whatsapp_buy} onClick={() => buyFromWhatsapp()}>
-                    <div className={handles.btn_free_content}>
-                      <img className={handles.btn_img_whatsapp} src='https://ceramicaitalia.vtexassets.com/assets/vtex.file-manager-graphql/images/9ccc95d1-6540-43bd-b6c7-8a7ccbda6901___b900370a8d6bf4c1ce8ac67712888793.png' />
-                      <div className={handles.free_content_text}>
-                        <span className={handles.content_text_free}>Compra por whatsapp</span>
-                        <span className={handles.content_text_pay}>hablar con un asesor</span>
-                      </div>
-                    </div>
-                  </button>
                 </div>
               }
 
             </div>
+
           </div>
-
         </div>
-
       )}
     </ToastConsumer>
   )
