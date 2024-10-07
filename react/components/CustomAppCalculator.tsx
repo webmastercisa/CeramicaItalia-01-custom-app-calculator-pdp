@@ -15,7 +15,7 @@ import { IcoAlert, IcoCart } from '../svg/Icos'
 import { Modal } from '../Atom/Modal'
 import { ProductContextState } from '../typings/ProductType';
 import { CSS_HANDLES, formatter, validateInputNumber } from '../constant';
-import { GlueBySku } from './GlueBySku';
+//Pegante =========> import { GlueBySku } from './GlueBySku';
 
 
 
@@ -26,14 +26,14 @@ export const CustomAppCalculator = () => {
   const { product, selectedItem } = useContext<ProductContextState>(ProductContext);
   const [loading, setLoading] = useState(false)
   const [loadingFreeSample, setLoadingFreeSample] = useState(false)
-  const [checkGlue, setCheckGlue] = useState(false)
-  const [skuGlue, setSkuGlue] = useState('')
+  //Pegante =========>const [checkGlue, setCheckGlue] = useState(false)
+  //Pegante =========>const [skuGlue, setSkuGlue] = useState('')
   const [skuFreeSample, setSkuFreeSample] = useState('')
   const [inputMeters, setInputMeters] = useState(1)
   const [cantBox, setCantBox] = useState(1)
-  const [cantGlue, setCantGlue] = useState(1)
-  const [unitMultiplierGlue, setUnitMultiplierGlue] = useState(0)
-  const [mountGlue, setMountGlue] = useState(0)
+  //Pegante =========> const [cantGlue, setCantGlue] = useState(1)
+  //Pegante =========> const [unitMultiplierGlue, setUnitMultiplierGlue] = useState(0)
+  //Pegante =========> const [mountGlue, setMountGlue] = useState(0)
   const [checkMore, setCheckMore] = useState(false)
   const [beforeCheckInput, setBeforeCheckInput] = useState(0)
   const [showCal, setShowCal] = useState(false)
@@ -48,10 +48,10 @@ export const CustomAppCalculator = () => {
   const [inputMetersTotalPared, setInputMetersTotalPared] = useState(0)
   useEffect(() => {
     if (product) {
-      const Glue = product.properties.find((pro) => pro.name === 'Id SKU Pegante')
-      if (Glue && Glue.values.length > 0) {
-        setSkuGlue(Glue.values[0])
-      }
+      //Pegante =========> const Glue = product.properties.find((pro) => pro.name === 'Id SKU Pegante')
+      //Pegante =========> if (Glue && Glue.values.length > 0) {
+      //Pegante =========>  setSkuGlue(Glue.values[0])
+      //Pegante =========> }
       const FreeSample = product.properties.find((pro) => pro.name === 'Id Muestra')
       if (FreeSample && FreeSample.values.length > 0) {
         setSkuFreeSample(FreeSample.values[0])
@@ -76,9 +76,9 @@ export const CustomAppCalculator = () => {
     if (unitMultiplier) {
       const boxCount = Math.ceil(inputNumber / unitMultiplier)
       setCantBox(boxCount)
-      const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))
+      //Pegante =========> const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))
 
-      setCantGlue(glue)
+      //Pegante =========> setCantGlue(glue)
     }
 
   }
@@ -92,9 +92,9 @@ export const CustomAppCalculator = () => {
     if (unitMultiplier) {
       const boxCount = Math.ceil(inputNumber / unitMultiplier)
       setCantBox(boxCount)
-      const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))
+      //Pegante =========> const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))
 
-      setCantGlue(glue)
+      //Pegante =========> setCantGlue(glue)
     }
 
   }
@@ -154,9 +154,9 @@ export const CustomAppCalculator = () => {
     if (unitMultiplier) {
       const boxCount = Math.ceil(inputNumber / unitMultiplier)
       setCantBox(boxCount)
-      const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))
 
-      setCantGlue(glue)
+      //Pegante =========> const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))
+      //Pegante =========> setCantGlue(glue)
     }
 
   }
@@ -169,9 +169,8 @@ export const CustomAppCalculator = () => {
     if (unitMultiplier) {
       const boxCount = Math.ceil(inputNumber / unitMultiplier)
       setCantBox(boxCount)
-      const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))
-
-      setCantGlue(glue)
+      //Pegante =========> const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))
+      //Pegante =========> setCantGlue(glue)
     }
 
   }
@@ -182,8 +181,9 @@ export const CustomAppCalculator = () => {
       if (unitMultiplier) {
         const boxCount = Math.ceil(beforeCheckInput / unitMultiplier)
         setCantBox(boxCount)
-        const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))
-        setCantGlue(glue)
+
+        //Pegante =========> const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))
+        //Pegante =========> setCantGlue(glue)
       }
     } else {
       setBeforeCheckInput(inputMeters)
@@ -192,8 +192,9 @@ export const CustomAppCalculator = () => {
       if (unitMultiplier) {
         const boxCount = Math.ceil(result / unitMultiplier)
         setCantBox(boxCount)
-        const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))
-        setCantGlue(glue)
+
+        //Pegante =========> const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))
+        //Pegante =========> setCantGlue(glue)
       }
     }
     setCheckMore(!checkMore)
@@ -209,13 +210,17 @@ export const CustomAppCalculator = () => {
       }
     ]
 
-    if (skuGlue !== '' && cantGlue > 0 && checkGlue) {
+    //Pegante =========>
+    /*
+    if (skuGlue !== '' && cantGlue > 0 && checkGlue)
+    {
       items.push({
         id: skuGlue,
         quantity: cantGlue,
         seller: '1'
       })
     }
+      */
 
     await addItem(items)
     setLoading(false)
@@ -230,14 +235,10 @@ export const CustomAppCalculator = () => {
     const sumMeters = inputMetersTotalPiso + inputMetersTotalPared
     inputChangeCalculator(sumMeters)
     setShowCal(!showCal)
-
-
   }
 
   // const buyFromWhatsapp = async () => {
-
   //   window.location.href = 'https://cutt.ly/cexPOtcZ';
-
   // }
 
   const addToCartFreeSample = async (showToast: any) => {
@@ -380,6 +381,9 @@ export const CustomAppCalculator = () => {
               </span>
             </div>
           </div>
+          {/* ================  Bloque de pegantes... Quitado por segunda vez Soporte #02.660.468 =======================
+            =============================================================================================================
+          }
           <div className={handles.box_additional}>
             {skuGlue !== '' && <GlueBySku sku={skuGlue} checkGlue={checkGlue} setCheckGlue={setCheckGlue} setUnitMultiplierGlue={setUnitMultiplierGlue}
               cantGlue={cantGlue} setCantGlue={setCantGlue} setMountGlue={setMountGlue} />}
@@ -395,15 +399,21 @@ export const CustomAppCalculator = () => {
               Total IVA Incluido
             </span>
           </div>
+          { ================  Fin Bloque de pegantes...  ======================= */}
+
           <div className={handles.box_btn}>
             <div className={handles.btn_content}>
               <div className={handles.btn_img_list}>
                 <img className={handles.btn_img} src='https://ceramicaitalia.vteximg.com.br/arquivos/pagosceramica1.png' />
               </div>
-              {/* <div className={handles.content_add_img_text}>
+              {/*
+
+              <div className={handles.content_add_img_text}>
                 <img className={handles.content_add_img} src='https://ceramicaitalia.vteximg.com.br/arquivos/ico_ban_it.png' />
                 <span className={handles.content_add_text}>Envío Gratis</span>
-              </div> */}
+              </div>
+
+              */}
 
 
               {(!(skuFreeSample === '') || loadingFreeSample) &&
