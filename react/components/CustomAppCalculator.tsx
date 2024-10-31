@@ -429,30 +429,35 @@ export const CustomAppCalculator = () => {
                       }
                     </button>
                   </div>
-                  <div className={handles.input_price}>
-                    <div className={handles.container_input}>
-                      <button className={handles.btn_buy_sample} onClick={() => addToCartFreeSample(showToast)} >
-                        <div className={handles.free_content_text}>
-                          <span className={handles.btn_add_text}>
-                            <img className={handles.btn_img_whatsapp} src='https://ceramicaitalia.vtexassets.com/assets/vtex.file-manager-graphql/images/9021a85f-3898-45c8-b49a-d602437619f7___e9c6a17924b917d53bead8b3382a7b24.png' />
-                            ¡Solicita tu Muestra Gratis!
-                          </span>
-                          <span className={handles.btn_add_text_whatsapp}>Paga el envío contra entrega</span>
+                  {/* =========================== Quitar Muestra Gratis 02.676.830 =================================================== */}
+                  {((skuFreeSample === 'DGDFGDFGDFDFGDFG/&((678678')) &&
+                    <div className="summarySmallDisclaimer">
+                      <div className={handles.input_price}>
+                        <div className={handles.container_input}>
+                          <button className={handles.btn_buy_sample} onClick={() => addToCartFreeSample(showToast)} >
+                            <div className={handles.free_content_text}>
+                              <span className={handles.btn_add_text}>
+                                <img className={handles.btn_img_whatsapp} src='https://ceramicaitalia.vtexassets.com/assets/vtex.file-manager-graphql/images/9021a85f-3898-45c8-b49a-d602437619f7___e9c6a17924b917d53bead8b3382a7b24.png' />
+                                ¡Solicita tu Muestra Gratis!
+                              </span>
+                              <span className={handles.btn_add_text_whatsapp}>Paga el envío contra entrega</span>
+                            </div>
+                          </button>
                         </div>
-                      </button>
+                        {/* <div className={handles.container_price}>
+                        <button className={handles.btn_buy_whatsapp} onClick={() => buyFromWhatsapp()}  >
+                          <div className={handles.btn_add_content_whatsapp}>
+                            <span className={handles.btn_add_text}>
+                              <img className={handles.btn_img_whatsapp} src='https://ceramicaitalia.vtexassets.com/assets/vtex.file-manager-graphql/images/9ccc95d1-6540-43bd-b6c7-8a7ccbda6901___b900370a8d6bf4c1ce8ac67712888793.png' />
+                              Compra por whatsapp<br />
+                            </span>
+                            <span className={handles.btn_add_text_whatsapp}>hablar con un asesor</span>
+                          </div>
+                        </button>
+                      </div> */}
+                      </div>
                     </div>
-                    {/* <div className={handles.container_price}>
-                      <button className={handles.btn_buy_whatsapp} onClick={() => buyFromWhatsapp()}  >
-                        <div className={handles.btn_add_content_whatsapp}>
-                          <span className={handles.btn_add_text}>
-                            <img className={handles.btn_img_whatsapp} src='https://ceramicaitalia.vtexassets.com/assets/vtex.file-manager-graphql/images/9ccc95d1-6540-43bd-b6c7-8a7ccbda6901___b900370a8d6bf4c1ce8ac67712888793.png' />
-                            Compra por whatsapp<br />
-                          </span>
-                          <span className={handles.btn_add_text_whatsapp}>hablar con un asesor</span>
-                        </div>
-                      </button>
-                    </div> */}
-                  </div>
+                  }
                 </>
 
 
