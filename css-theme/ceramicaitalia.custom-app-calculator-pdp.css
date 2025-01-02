@@ -2,6 +2,7 @@
 
 .input_price {
   display: flex;
+  width: 650px;
 }
 
 .container_input {
@@ -377,11 +378,11 @@
 .btn_add{
     width: 50%;
     background-color: #ED1B24;
+    color: #fff;
     border: 1px solid #ED1B24;
     border-radius: 100px;
     padding: 8px;
     height: 48px;
-    color: #fff;
     cursor: pointer;
     transition: color .35s ease-in-out,background-color .35s ease-in-out;
 }
