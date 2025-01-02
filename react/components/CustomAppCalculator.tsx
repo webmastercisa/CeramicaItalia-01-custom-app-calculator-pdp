@@ -11,13 +11,13 @@ import { useCssHandles } from 'vtex.css-handles'
 import { ProductContext } from "vtex.product-context";
 import { Spinner, ToastConsumer } from 'vtex.styleguide'
 import { useOrderItems } from 'vtex.order-items/OrderItems'
-import { IcoAlert, IcoCart } from '../svg/Icos'
+//import { IcoAlert, IcoCart } from '../svg/Icos'
+//import { IcoCart } from '../svg/Icos'
+import { IcoCart4628 } from '../svg/Icos'
 import { Modal } from '../Atom/Modal'
 import { ProductContextState } from '../typings/ProductType';
 import { CSS_HANDLES, formatter, validateInputNumber } from '../constant';
 //Pegante =========> import { GlueBySku } from './GlueBySku';
-
-
 
 
 export const CustomAppCalculator = () => {
@@ -30,6 +30,7 @@ export const CustomAppCalculator = () => {
   //Pegante =========>const [skuGlue, setSkuGlue] = useState('')
   const [skuFreeSample, setSkuFreeSample] = useState('')
   const [inputMeters, setInputMeters] = useState(1)
+  const [inputMetersRaw, setInputMetersRaw] = useState(1)
   const [cantBox, setCantBox] = useState(1)
   //Pegante =========> const [cantGlue, setCantGlue] = useState(1)
   //Pegante =========> const [unitMultiplierGlue, setUnitMultiplierGlue] = useState(0)
@@ -46,6 +47,396 @@ export const CustomAppCalculator = () => {
   const [inputMetersAnchoPared, setInputMetersAnchoPared] = useState(1)
   const [inputMetersAltoPared, setInputMetersAltoPared] = useState(1)
   const [inputMetersTotalPared, setInputMetersTotalPared] = useState(0)
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  const StyleContenedor =
+  {
+    "font-family": "Neutra Display",
+    top: "453px",
+    left: "1061px",
+    width: "100%",
+    height: "325px",
+    opacity: "1",
+  };
+
+  const StyleContenedorInterno =
+  {
+    width: "100%",
+    opacity: "1",
+  };
+
+  const StyleContenedorPriceUnit =
+  {
+    "padding-top": isMobile ?  "1px":"20px",
+    "padding-bottom": isMobile ?  "1px":"20px",
+    width: "100%",
+    opacity: "1",
+    display: "flex",
+    "justify-content": "flex-start",
+  };
+
+  const StyleLabelValor1 =
+  {
+    width: "45%",
+    height: "30px",
+    /* UI Properties */
+    "text-align": "center",
+    "font-family": "NeutraTextBook",
+    "font-size": isMobile ? "1.2rem" : "1.6rem",
+    "letter-spacing": "0px",
+    color: "#232323",
+    opacity: "1",
+    "font-weight": "800",
+    "margin-top": isMobile ?  "15px": "1px",
+  };
+
+  const StyleLabelValor2 =
+  {
+    width: "10%",
+    height: "10px",
+    /* UI Properties */
+    "text-align": "center",
+    "font-size": "40px",
+    "font-family": "auto",
+    "font-weight": "100",
+    "letter-spacing": "0px",
+    color: "#232323",
+    opacity: "1",
+  };
+
+  const StyleLabelValor3 =
+  {
+    top: "477px",
+    left: "1350px",
+    width: "45%",
+    height: "30px",
+    /* UI Properties */
+    "text-align": "center",
+    "font-family": "NeutraTextBook",
+    "font-size": isMobile ? "1.2rem" : "1.6rem",
+    "letter-spacing": "0px",
+    color: "#232323",
+    opacity: "1",
+    "font-weight": "800",
+    "margin-top": isMobile ?  "15px": "1px",
+  };
+
+  const StyleContenedorLabelInfo =
+  {
+    width: "100%",
+    opacity: "1",
+    display: "flex",
+    "justify-content": "flex-start",
+    "margin-top": isMobile ? '10px' : "1px",
+  };
+
+  const StyleLabelInfo1 =
+  {
+    top: "523px",
+    left: "1124px",
+    width: "75%",
+    height: "16px",
+    /* UI Properties */
+    "text-align": "center",
+    "font-size": isMobile ? '12px' : "14px",
+    "font-family": "NeutraTextBook",
+    "letter-spacing": isMobile ? "-0.856px":"0.4px",
+    color: "#747474",
+    opacity: "1",
+  };
+
+  const StyleLabelInfo2 =
+  {
+    width: "25%",
+    height: "14px",
+    "font-size": isMobile ? '8px' : "11px",
+    "font-family": "NeutraTextBook",
+    "letter-spacing": "0px",
+    "padding-top": "3px",
+    color: "#FF0000",
+    cursor: "pointer",
+    opacity: "1",
+  };
+
+  const StyleContentInputs =
+  {
+    top: "544px",
+    left: "1113px",
+    width: "100%",
+    height: isMobile ? "42px":"55px",
+    "margin-top":"5px",
+    "margin-bottom":"10px",
+    "padding-top":"5px",
+    "padding-bottom":"5px",
+    /* UI Properties */
+    "font-family": "NeutraTextBook",
+    background: "#DAD8D8 0% 0% no-repeat padding-box",
+    "border-radius": "10px",
+    opacity: "1",
+    display: "flex",
+    "justify-content": "flex-start",
+  };
+
+  const StyleContentInputInt =
+  {
+    /*
+    background: "#0AD8D8 0% 0% no-repeat padding-box",
+    "padding-top":"5px",
+    */
+    width: "45%",
+    height: "42px",
+    /* UI Properties */
+    "text-align": "center",
+    "font-size": "24px",
+    "font-family": "NeutraTextBook",
+    "letter-spacing": "0px",
+    color: "#FF0000",
+    opacity: "1",
+  };
+
+  const StyleContentInputcont =
+  {
+    background: "#FFF 0% 0% no-repeat padding-box",
+    "border-radius": isMobile ? "6px":"13px",
+    "padding-top": isMobile ? "10px":"8px",
+    "padding-bottom":"10px",
+    width: isMobile ? "85px":"74px",
+    height: isMobile ? "30px":"38px",
+    /* UI Properties */
+    "text-align": "center",
+    "font-size": "24px",
+    "font-family": "NeutraTextBook",
+    "letter-spacing": "0px",
+    color: "#FF0000",
+    opacity: "1",
+    display: "inline-flex",
+    "align-items": "center",
+  }
+
+  const BtDirL =
+  {
+    color:"#6A6A6A",
+    width: "1px",
+    height: "20px",
+    border: "none",
+    background: "#FFFFFF 0% 0% no-repeat padding-box",
+    cursor: "pointer",
+    "font-size": "10px",
+    "margin-top": "12px",
+    "margin-left": "4px",
+  }
+
+  const BtDirR =
+  {
+    color:"#6A6A6A",
+    width: "1px",
+    height: "20px",
+    border: "none",
+    background: "#FFFFFF 0% 0% no-repeat padding-box",
+    cursor: "pointer",
+    "font-size": "10px",
+    "margin-top": "12px",
+  }
+
+  const StyleContentInputDiv =
+  {
+    width: "10%",
+    height: "20px",
+    /* UI Properties */
+    "text-align": "center",
+    "font-size": isMobile ? "32px":"40px",
+    "font-family": "auto",
+    "font-weight": "100",
+    "letter-spacing": "0px",
+    color: "#000000",
+    opacity: "1",
+  };
+
+  const StyleInput =
+  {
+    width: "38px",
+    height: isMobile ? "20px":"26px",
+    /* UI Properties */
+    background: "#FFFFFF 0% 0% no-repeat padding-box",
+    "border-radius": "9px",
+    "text-align": "center",
+    "font-size": isMobile ? "16px":"18px",
+    "font-family": "NeutraTextBook",
+    color:"#747474",
+    border: "none",
+    outline: "none",
+    opacity: "1",
+    "margin-left": "14px",
+    "margin-right": "0px",
+    "margin-top": "4px",
+    "margin-bottom": "2px",
+  };
+
+  const StyleLabelInputs =
+  {
+    top: "556px",
+    left: "1261px",
+    width: "21px",
+    height: isMobile ? "18px":"21px",
+    /* UI Properties */
+    "text-align": "left",
+    "letter-spacing": "-1px",
+    "font-size": isMobile ? "16px":"19px",
+    color: "#747474",
+    opacity: "1",
+  }
+
+  const StyleInputRadio =
+  {
+    /*"margin-top": "10px",*/
+    /*"justify-content": "space-between", */
+  }
+
+/*
+  const StyleRadioButton =
+  {
+    "-webkit-appearance": "none",
+    "-moz-appearance": "none",
+    width: "20px",
+    height: "20px",
+    "margin-top": "4px",
+    "margin-right": "4px",
+
+    border: "2px solid #333",
+    "border-radius": "5px",
+    cursor: "pointer",
+  }*/
+/*
+  const StyleRadioButton =
+  {
+    container: {
+      position: "relative",
+      display: "inline-block",
+      cursor: "pointer"
+    },
+    input: {
+      display: 'none'
+    },
+    checkmark: {
+      display: 'inline-block',
+      width: '16px',
+      height: '16px',
+      border: '2px solid #999',
+      background: 'white',
+    },
+    checked: {
+      '&::after': {
+        content: '"✓"',
+        color: 'red',
+        position: 'absolute',
+        left: '50%',
+        top: '45%',
+        transform: 'translate(-50%, -50%)',
+      }
+    }
+   };
+*/
+
+
+  const StyleRadius_text =
+  {
+    "padding-left": "1px",
+    color: "#747474",
+    "font-size": isMobile ? "10px" : "14px",
+    "font-style": "normal",
+    "font-weight": "550",
+    "font-family": "NeutraTextBook",
+    "line-height": "normal",
+    "text-align": "center",
+  }
+
+  const StyleDivLblMeterTotal =
+  {
+    width: "100%",
+    padding: "10px",
+    "box-sizing": "border-box",
+    "text-align": "center",
+    "letter-spacing": "0px",
+    "font-size": "14px",
+    "font-family": "NeutraTextBook",
+  }
+
+  const StyleDivLblPriceTotal =
+  {
+    width: "100%",
+    "box-sizing": "border-box",
+    "text-align": "center",
+    "letter-spacing": "0px",
+    "font-size": isMobile ? "1.6rem" : "2.0rem", /* 25/30*/
+    "font-weight": "bolder",
+    display: "block",
+    "font-family": "NeutraTextBook",
+  }
+
+  /* ============== Boton  =============  */
+  const bt_wh_red =
+  {
+    button :
+    {
+      width: "100%",
+      "background-color": "#FFFFFF",
+      border: "3px solid #ED1B24",
+      "border-radius": "100px",
+      padding: "1px 8px 8px 8px",
+      height: "48px",
+      color: "#ED1B24",
+      cursor: "pointer",
+      transition: "color .35s ease-in-out, background-color .35s ease-in-out",
+    }
+  }
+/*
+  const bt_IcoCart =
+  {
+    height: "48px",
+    color: "#ED1B24",
+  }
+    */
+
+  const bt_wh_red_text =
+  {
+    "text-decoration": "none",
+    "font-size":  isMobile ? "1.6rem" : "2.0rem",
+    "font-weight": "bolder",
+    "font-family": "NeutraTextBook",
+    padding: "1px 8px 8px 0px",
+  }
+/*
+  const bt_wh_background =
+  {
+    "background-color": "#FFFFFF !important",
+  }
+*/
+  const bt_wh_red_txt =
+  {
+    normal:
+    {
+      "text-decoration": "none",
+      color: "#ED2024",
+      "font-size":  isMobile ? "1.6rem" : "2.0rem",
+      "font-weight": "bolder",
+      "font-family": "NeutraTextBook",
+      padding: "1px 8px 8px 0px",
+      /*padding: "1px 40px",*/
+    },
+    hover:
+    {
+      "text-decoration": "none",
+      color: "#FFFFFF",
+      "font-size": "30px",
+      "font-weight": "bolder",
+      "font-family": "NeutraTextBook",
+      padding: "1px 8px 8px 0px",
+      /*padding: "1px 40px",*/
+    }
+  }
+
+
+
   useEffect(() => {
     if (product) {
       //Pegante =========> const Glue = product.properties.find((pro) => pro.name === 'Id SKU Pegante')
@@ -56,6 +447,14 @@ export const CustomAppCalculator = () => {
       if (FreeSample && FreeSample.values.length > 0) {
         setSkuFreeSample(FreeSample.values[0])
       }
+
+      const handleResize = () =>
+      {
+        setIsMobile(window.innerWidth < 768);
+      };
+      window.addEventListener('resize', handleResize);
+      //return () => window.removeEventListener('resize', handleResize);
+      setInputMetersRaw(1 * 1.8)
     }
   }, [product])
 
@@ -65,7 +464,7 @@ export const CustomAppCalculator = () => {
   const Tax = selectedItem?.sellers[0]?.commertialOffer.Tax
   const sellingPriceWithTax = (Price && taxPercentage && taxPercentage !== 0 && Tax && unitMultiplier) ? Math.ceil(Price + (Tax / unitMultiplier)) : Price
 
-  const measurementUnit = selectedItem?.measurementUnit
+  /*const measurementUnit = selectedItem?.measurementUnit*/
 
   const inputChange = (input: ChangeEvent<HTMLInputElement>) => {
     const { value } = input.target
@@ -73,14 +472,85 @@ export const CustomAppCalculator = () => {
 
     setInputMeters(inputNumber)
     setCheckMore(false)
-    if (unitMultiplier) {
+    if (unitMultiplier)
+    {
       const boxCount = Math.ceil(inputNumber / unitMultiplier)
       setCantBox(boxCount)
+      setInputMetersRaw(boxCount * unitMultiplier)
       //Pegante =========> const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))
-
       //Pegante =========> setCantGlue(glue)
     }
 
+  }
+
+  {/* ==================== Evento cambio de valor en edit de cajas =========================== */}
+  const inputChangeBox = (input: ChangeEvent<HTMLInputElement>) =>
+  {
+    const { value } = input.target
+    const inputNumber = validateInputNumber(value) ? parseInt(value) : value === '' ? 0 : cantBox !== 0 ? cantBox : 0
+    setCantBox(inputNumber)
+    setCheckMore(false)
+
+    if (unitMultiplier)
+    {
+      const metersCount = Math.trunc(inputNumber * unitMultiplier)
+      setInputMeters(metersCount)
+      setInputMetersRaw(inputNumber * unitMultiplier)
+    }
+  }
+
+  const OneBoxMinus = () =>
+  {
+    setCheckMore(false)
+    if (cantBox > 1)
+    {
+      setCantBox(cantBox - 1)
+      if (unitMultiplier)
+      {
+        const metersCount = Math.trunc((cantBox - 1) * unitMultiplier)
+        setInputMeters(metersCount)
+        setInputMetersRaw((cantBox - 1) * unitMultiplier)
+      } //if
+    } //if
+  }
+
+  const OneBoxMore = () =>
+  {
+    setCheckMore(false)
+    setCantBox(cantBox + 1)
+    if (unitMultiplier)
+    {
+      const metersCount = Math.trunc((cantBox + 1) * unitMultiplier)
+      setInputMeters(metersCount)
+      setInputMetersRaw((cantBox + 1) * unitMultiplier)
+    } //if
+  }
+
+  const OneMeterMinus = () =>
+  {
+    if (inputMeters > 1)
+    {
+      setCheckMore(false)
+      setInputMeters(inputMeters - 1)
+      if (unitMultiplier)
+      {
+        const boxCount = Math.ceil((inputMeters - 1) / unitMultiplier)
+        setCantBox(boxCount)
+        setInputMetersRaw(boxCount * unitMultiplier)
+      } //if
+    } //if
+  }
+
+  const OneMeterMore = () =>
+  {
+    setCheckMore(false)
+    setInputMeters(inputMeters + 1)
+    if (unitMultiplier)
+    {
+      const boxCount = Math.ceil((inputMeters + 1) / unitMultiplier)
+      setCantBox(boxCount)
+      setInputMetersRaw(boxCount * unitMultiplier)
+    } //if
   }
 
   const inputChangeCalculator = (meters: number) => {
@@ -121,8 +591,6 @@ export const CustomAppCalculator = () => {
 
   }
 
-
-
   const inputChangeAnchoPared = (input: ChangeEvent<HTMLInputElement>) => {
     const { value } = input.target
     const inputNumber = validateInputNumber(value) ? parseInt(value) : value === '' ? 0 : inputMeters !== 0 ? inputMeters : 0
@@ -132,7 +600,6 @@ export const CustomAppCalculator = () => {
     setInputMetersTotalPared(totalAnchoPared)
 
   }
-
 
   const inputChangeAltoPared = (input: ChangeEvent<HTMLInputElement>) => {
     const { value } = input.target
@@ -160,6 +627,7 @@ export const CustomAppCalculator = () => {
     }
 
   }
+
   const inputChangeTotalPiso = (input: ChangeEvent<HTMLInputElement>) => {
     const { value } = input.target
     const inputNumber = validateInputNumber(value) ? parseInt(value) : value === '' ? 0 : inputMeters !== 0 ? inputMeters : 0
@@ -175,12 +643,14 @@ export const CustomAppCalculator = () => {
 
   }
 
-  const checkMoreCant = () => {
+  const checkMoreCant = () =>
+  {
     if (checkMore) {
       setInputMeters(beforeCheckInput)
       if (unitMultiplier) {
         const boxCount = Math.ceil(beforeCheckInput / unitMultiplier)
         setCantBox(boxCount)
+        setInputMetersRaw(boxCount * unitMultiplier)
 
         //Pegante =========> const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))
         //Pegante =========> setCantGlue(glue)
@@ -192,6 +662,7 @@ export const CustomAppCalculator = () => {
       if (unitMultiplier) {
         const boxCount = Math.ceil(result / unitMultiplier)
         setCantBox(boxCount)
+        setInputMetersRaw(boxCount * unitMultiplier)
 
         //Pegante =========> const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))
         //Pegante =========> setCantGlue(glue)
@@ -263,124 +734,105 @@ export const CustomAppCalculator = () => {
   return (
     <ToastConsumer>
       {({ showToast }: any) => (
-        <div className={handles.container}>
-          <div className={handles.input_price}>
-            <div className={handles.container_input}>
-              <span className={handles.input_text}>
-                Ingresa la cantidad de metros que necesitas
-              </span>
-              <input className={handles.input} value={inputMeters} onChange={inputChange} />
-              <div className={handles.content_modal_met}>
-                <span className={handles.content_modal_met_text} onClick={() => setShowCal(true)}>
-                  ¿Cómo calculo el metraje? usa nuestra calculadora
-                </span>
-                <Modal show={showCal} setShow={setShowCal} >
-                  {/* <div className={handles.modal_open}> */}
-                  <div className={handles.title_area_quote}>
-                    <span >Cotiza tu Espacio</span>
-                  </div>
+        <div style={StyleContenedor}>
 
-                  <div className={handles.containercalc}>
+          <div style={StyleContenedorInterno}>
 
-                    <div className={handles.columncalc}>
-
-                      <div className={handles.title_area_quote}><span>Piso</span></div>
-                      <span className={handles.input_text}>
-                        Ingresa Ancho en metros
-                      </span>
-                      <input className={handles.input} value={inputMetersAnchoPiso} onChange={inputChangeAnchoPiso} />
-                      <span className={handles.input_text}>
-                        Ingresa Largo en metros
-                      </span>
-                      <input className={handles.input} value={inputMetersLargoPiso} onChange={inputChangeLargoPiso} />
-                      <span className={handles.input_text}>
-                        Total Piso m2
-                      </span>
-                      <input className={handles.input} value={inputMetersTotalPiso} onChange={inputChangeTotalPiso} />
-                    </div>
-                    <div className={handles.columncalc}>
-                      <div className={handles.title_area_quote}><span>Pared</span></div>
-                      <span className={handles.input_text}>
-                        Ingresa Ancho en metros
-                      </span>
-                      <input className={handles.input} value={inputMetersAnchoPared} onChange={inputChangeAnchoPared} />
-                      <span className={handles.input_text}>
-                        Ingresa Alto en metros
-                      </span>
-                      <input className={handles.input} value={inputMetersAltoPared} onChange={inputChangeAltoPared} />
-                      <span className={handles.input_text}>
-                        Total Pared m2
-                      </span>
-                      <input className={handles.input} value={inputMetersTotalPared} onChange={inputChangeTotalPared} />
-                    </div>
-                    <div className={handles.btn_quote_list}>
-                      <button className={handles.btn_quote} disabled={loading} onClick={() => Quote()}>
-                        <span className={handles.btn_add_text}>Cotizar</span>
-                      </button>
-                    </div>
-
-                  </div>
-
-                  {/* </div> */}
-
-
-
-
-                </Modal>
-              </div>
-              {/* <div className={handles.content_modal_met}>
-                <span className={handles.content_modal_met_text} onClick={() => setShowCal(true)}>
-                  ¿Cómo calculo el metraje?
-                </span>
-                <Modal show={showCal} setShow={setShowCal} >
-                  <div className={handles.modal_open}>
-                    <img src="https://ceramicaitalia.vteximg.com.br/arquivos/Tarjeta-metraje-01.png" alt="calcular metraje" className={handles.img1_modal} />
-                    <img src="https://ceramicaitalia.vteximg.com.br/arquivos/Tarjeta-metraje-02.png" alt="calcular metraje" className={handles.img2_modal} />
-                    <img src="https://ceramicaitalia.vteximg.com.br/arquivos/Tarjeta-metraje-03.png" alt="calcular metraje" className={handles.img3_modal} />
-                    <img src="https://ceramicaitalia.vteximg.com.br/arquivos/Tarjeta-metraje-04.png" alt="calcular metraje" className={handles.img4_modal} />
-                  </div>
-                </Modal>
-              </div> */}
+            <div style={StyleContenedorPriceUnit}>
+              <span style={StyleLabelValor1}>{formatter.format((sellingPriceWithTax) ? sellingPriceWithTax : 0)} por M<sup>2</sup></span>
+              <span style={StyleLabelValor2}>|</span>
+              <span style={StyleLabelValor3}> {formatter.format((unitMultiplier && sellingPriceWithTax) ? sellingPriceWithTax * unitMultiplier : 0)} por Caja </span>
             </div>
-            <div className={handles.container_price}>
-              <div className={handles.text_price}>
-                <span className={handles.text_price_price}>Precio m
-                  <span className={handles.text_price_price_top}>2</span>
-                </span> <span className={handles.text_price_mount}>{formatter.format((sellingPriceWithTax) ? sellingPriceWithTax : 0)}</span>
+
+            <div style={StyleContenedorLabelInfo}>
+              <span style={StyleLabelInfo1}>Ingresa la cantidad de Metros o cajas que necesitas</span>
+              <span style={StyleLabelInfo2} onClick={() => setShowCal(true)}> ¿Cómo calculo los M2? </span>
+              <Modal show={showCal} setShow={setShowCal} >
+                {/* <div className={handles.modal_open}> */}
+                <div className={handles.title_area_quote}> <span>Cotiza tu Espacio</span> </div>
+
+                <div className={handles.containercalc}>
+
+                  <div className={handles.columncalc}>
+                    <div className={handles.title_area_quote}><span>Piso</span></div>
+                    <span className={handles.input_text}> Ingresa Ancho en metros </span>
+                    <input className={handles.input} value={inputMetersAnchoPiso} onChange={inputChangeAnchoPiso} />
+                    <span className={handles.input_text}> Ingresa Largo en metros </span>
+                    <input className={handles.input} value={inputMetersLargoPiso} onChange={inputChangeLargoPiso} />
+                    <span className={handles.input_text}> Total Piso m2 </span>
+                    <input className={handles.input} value={inputMetersTotalPiso} onChange={inputChangeTotalPiso} />
+                  </div>
+                  <div className={handles.columncalc}>
+                    <div className={handles.title_area_quote}><span>Pared</span></div>
+                    <span className={handles.input_text}> Ingresa Ancho en metros </span>
+                    <input className={handles.input} value={inputMetersAnchoPared} onChange={inputChangeAnchoPared} />
+                    <span className={handles.input_text}> Ingresa Alto en metros </span>
+                    <input className={handles.input} value={inputMetersAltoPared} onChange={inputChangeAltoPared} />
+                    <span className={handles.input_text}> Total Pared m2 </span>
+                    <input className={handles.input} value={inputMetersTotalPared} onChange={inputChangeTotalPared} />
+                  </div>
+                  <div className={handles.btn_quote_list}>
+                    <button className={handles.btn_quote} disabled={loading} onClick={() => Quote()}>
+                      <span className={handles.btn_add_text}>Cotizar</span>
+                    </button>
+                  </div>
+
+                </div>
+
+                {/* </div> */}
+
+              </Modal>
+            </div>
+
+            <div style={StyleContentInputs}>
+
+              <div style={StyleContentInputInt}>
+                <div style={StyleContentInputcont}>
+                  <span style={BtDirL} onClick={OneMeterMinus}>◀</span>
+                  <input style={StyleInput} value={inputMeters} onChange={inputChange} />
+                  <span style={BtDirR} onClick={OneMeterMore}>▶</span>
+                </div>
+                <span style={StyleLabelInputs}>&nbsp;&nbsp;M<sup>2</sup></span>
               </div>
-              <div className={handles.text_price_box}>
-                Precio caja: {formatter.format((unitMultiplier && sellingPriceWithTax) ? sellingPriceWithTax * unitMultiplier : 0)}/{unitMultiplier} {measurementUnit}
+
+              <div style={StyleContentInputDiv}>|</div>
+
+              <div style={StyleContentInputInt}>
+                <div style={StyleContentInputcont}>
+                  <span style={BtDirL} onClick={OneBoxMinus}>◀</span>
+                  <input style={StyleInput} value={cantBox} onChange={inputChangeBox} />
+                  <span style={BtDirR} onClick={OneBoxMore}>▶</span>
+                </div>
+                <span style={StyleLabelInputs}>&nbsp; Cajas</span>
               </div>
             </div>
+
+
           </div>
-          <div className={handles.input_radius}>
+
+          <div style={StyleInputRadio}>
             <label className={handles.radius_label}>
-              <input className={handles.radius_input} type='radio' checked={checkMore} onClick={checkMoreCant} />
-              <span className={handles.radius_text}>Agrega 10% más de material ¡TE LO RECOMENDAMOS!</span>
-            </label>
-            <div className={handles.content_modal_why}>
-              <span className={handles.content_modal_why_text} onClick={() => setShowWhy(true)}>¿Por qué? <IcoAlert /></span>
+              <input  type='radio' checked={checkMore} onClick={checkMoreCant} />
+              &nbsp;
+              <span style={StyleRadius_text}>Recomendamos agregar el 10% adicional</span>
+
+              <span style={StyleLabelInfo2} onClick={() => setShowWhy(true)}>&nbsp;&nbsp;&nbsp;¿Por qué?</span>
               <Modal show={showWhy} setShow={setShowWhy} >
                 <div className={handles.content_modal_why_open}>
                   <span className={handles.content_modal_why_open_text}>Recomendamos agregar 10% adicional para cubrir los desperdicios en la instalación</span>
                 </div>
               </Modal>
-            </div>
+
+            </label>
           </div>
-          <div className={handles.box_price}>
-            <div className={handles.box_content}>
-              <span className={handles.box_content_text}>{cantBox}</span>
-              <span className={handles.box_content_text_box}>Caja(s)</span>
-            </div>
-            <div className={handles.content_price}>
-              <span className={handles.price}>
-                {formatter.format((sellingPriceWithTax && unitMultiplier) ? (sellingPriceWithTax * unitMultiplier) * cantBox : 0)}
-              </span>
-              <span className={handles.price_text}>
-                Total IVA Incluido
-              </span>
-            </div>
-          </div>
+
+
+
+          {/* ===============  Span pasarlo a input ===============  */}
+          <div style={StyleDivLblMeterTotal}> Metros totales: {inputMetersRaw} M<sup>2</sup> </div>
+          <span style={StyleDivLblPriceTotal}>Precio Total: &nbsp; {formatter.format((sellingPriceWithTax && unitMultiplier) ? (sellingPriceWithTax * unitMultiplier) * cantBox : 0)} </span>
+
+
           {/* ================  Bloque de pegantes... Quitado por segunda vez Soporte #02.660.468 =======================
             =============================================================================================================
           }
@@ -403,28 +855,14 @@ export const CustomAppCalculator = () => {
 
           <div className={handles.box_btn}>
             <div className={handles.btn_content}>
-              <div className={handles.btn_img_list}>
-                <img className={handles.btn_img} src='https://ceramicaitalia.vteximg.com.br/arquivos/pagosceramica1.png' />
-              </div>
-              {/*
-
-              <div className={handles.content_add_img_text}>
-                <img className={handles.content_add_img} src='https://ceramicaitalia.vteximg.com.br/arquivos/ico_ban_it.png' />
-                <span className={handles.content_add_text}>Envío Gratis</span>
-              </div>
-
-              */}
-
-
               {(!(skuFreeSample === '') || loadingFreeSample) &&
                 <>
                   <div className={handles.btn_img_list}>
-                    <button className={handles.btn_add} disabled={loading} onClick={() => addToCartAll(showToast)}>
+                    <button style={bt_wh_red.button} disabled={loading} onClick={() => addToCartAll(showToast)}>
                       {loading ?
                         <Spinner color="currentColor" size={30} /> :
-                        <div className={handles.btn_add_content}>
-                          <IcoCart />
-                          <span className={handles.btn_add_text}>Añadir al carrito</span>
+                        <div className={handles.btn_add_content}><IcoCart4628 />
+                          <span style={bt_wh_red_txt.normal}>Añadir al carrito!</span>
                         </div>
                       }
                     </button>
@@ -459,39 +897,30 @@ export const CustomAppCalculator = () => {
                     </div>
                   }
                 </>
-
-
-
-
-                // <button className={handles.btn_free} disabled={(skuFreeSample === '') || loadingFreeSample} onClick={() => addToCartFreeSample(showToast)}>
-                //   <div className={handles.btn_free_content}>
-                //     <IcoCart />
-                //     {loadingFreeSample ?
-                //       <Spinner color="currentColor" size={30} /> :
-                //       <div className={handles.free_content_text}>
-                //         <span className={handles.content_text_free}>¡Solicita tu Muestra Gratis!</span>
-                //         <span className={handles.content_text_pay}>Paga el envío contra entrega</span>
-                //       </div>}
-
-                //   </div>
-                // </button>
-
               }
 
               {((skuFreeSample === '')) &&
 
                 <div className={handles.btn_img_list}>
-                  <button className={handles.btn_add} disabled={loading} onClick={() => addToCartAll(showToast)}>
+                  <button className={handles.btn_free}
+                          disabled={loading}
+                          onClick={() => addToCartAll(showToast)}>
                     {loading ?
                       <Spinner color="currentColor" size={30} /> :
-                      <div className={handles.btn_add_content}>
-                        <IcoCart />
-                        <span className={handles.btn_add_text}>Añadir al carrito</span>
+                      <div>
+                        <IcoCart4628 />
+                        <span style={bt_wh_red_text}
+                        >Añadir al carrito</span>
                       </div>
                     }
                   </button>
                 </div>
               }
+
+              <div className={handles.btn_img_list}>
+                <img className={handles.btn_img} src='https://ceramicaitalia.vteximg.com.br/arquivos/pagosceramica1.png' />
+              </div>
+
 
             </div>
 
