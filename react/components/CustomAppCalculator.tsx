@@ -47,7 +47,10 @@ export const CustomAppCalculator = () => {
   const [inputMetersAnchoPared, setInputMetersAnchoPared] = useState(1)
   const [inputMetersAltoPared, setInputMetersAltoPared] = useState(1)
   const [inputMetersTotalPared, setInputMetersTotalPared] = useState(0)
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const MOBILE_BREAKPOINT = 768;
+  //const [isMobile, setIsMobile] = useState(window.innerWidth < MOBILE_BREAKPOINT);
+  const [isMobile, setIsMobile] = useState(true);
+
 
   const StyleContenedor =
   {
@@ -55,70 +58,68 @@ export const CustomAppCalculator = () => {
     top: "453px",
     left: "1061px",
     width: "100%",
-    height: "325px",
-    opacity: "1",
+    height:  isMobile ? "300px": "350px",
+    "text-align": "center",
   };
 
   const StyleContenedorInterno =
   {
     width: "100%",
-    opacity: "1",
   };
 
-  const StyleContenedorPriceUnit =
+  const ContenedorPriceUnit =
   {
     "padding-top": isMobile ?  "1px":"20px",
     "padding-bottom": isMobile ?  "1px":"20px",
     width: "100%",
     opacity: "1",
+
+
+
+
     display: "flex",
-    "justify-content": "flex-start",
+    justifyContent: 'center',
+    alignItems: 'center',
   };
 
   const StyleLabelValor1 =
   {
-    width: "45%",
+    width: "48%",
     height: "30px",
     /* UI Properties */
     "text-align": "center",
     "font-family": "NeutraTextBook",
-    "font-size": isMobile ? "1.2rem" : "1.6rem",
+    "font-size": isMobile ? "18px" : "29px",
     "letter-spacing": "0px",
     color: "#232323",
     opacity: "1",
     "font-weight": "800",
+
+    /*
     "margin-top": isMobile ?  "15px": "1px",
+    */
+
+    display: "flex",
+    justifyContent: 'center',
+    alignItems: 'center',
   };
 
   const StyleLabelValor2 =
   {
-    width: "10%",
+    width: "4%",
     height: "10px",
     /* UI Properties */
     "text-align": "center",
-    "font-size": "40px",
+    "font-size":  isMobile ? "30px" :"36px",
     "font-family": "auto",
     "font-weight": "100",
     "letter-spacing": "0px",
     color: "#232323",
     opacity: "1",
-  };
 
-  const StyleLabelValor3 =
-  {
-    top: "477px",
-    left: "1350px",
-    width: "45%",
-    height: "30px",
-    /* UI Properties */
-    "text-align": "center",
-    "font-family": "NeutraTextBook",
-    "font-size": isMobile ? "1.2rem" : "1.6rem",
-    "letter-spacing": "0px",
-    color: "#232323",
-    opacity: "1",
-    "font-weight": "800",
-    "margin-top": isMobile ?  "15px": "1px",
+    display: "flex",
+    justifyContent: 'center',
+    alignItems: 'center',
   };
 
   const StyleContenedorLabelInfo =
@@ -158,33 +159,38 @@ export const CustomAppCalculator = () => {
     opacity: "1",
   };
 
-  const StyleContentInputs =
+  const ContentInputs =
   {
     top: "544px",
     left: "1113px",
     width: "100%",
-    height: isMobile ? "42px":"55px",
+    height: isMobile ? "42px":"50px",
+    /*
     "margin-top":"5px",
     "margin-bottom":"10px",
-    "padding-top":"5px",
+    "padding-top":"6px",
     "padding-bottom":"5px",
+    */
+
     /* UI Properties */
     "font-family": "NeutraTextBook",
     background: "#DAD8D8 0% 0% no-repeat padding-box",
     "border-radius": "10px",
     opacity: "1",
     display: "flex",
-    "justify-content": "flex-start",
+    alignItems: 'center',
+    minHeight: isMobile ? "40px":'50px',
+    "margin-bottom":"5px",
   };
 
-  const StyleContentInputInt =
+  const ContentInputInt =
   {
     /*
-    background: "#0AD8D8 0% 0% no-repeat padding-box",
+    background: "#AFC 0% 0% no-repeat padding-box",
     "padding-top":"5px",
     */
-    width: "45%",
-    height: "42px",
+    width: "48%",
+    height: "100%",
     /* UI Properties */
     "text-align": "center",
     "font-size": "24px",
@@ -192,6 +198,30 @@ export const CustomAppCalculator = () => {
     "letter-spacing": "0px",
     color: "#FF0000",
     opacity: "1",
+
+    display: "flex",
+    justifyContent: 'center',
+    alignItems: 'center',
+    minHeight: isMobile ? "40px":'50px',
+  };
+
+  const ContentInputDiv =
+  {
+    width: "4%",
+    height: "20px",
+    /* UI Properties */
+    "text-align": "center",
+    "font-size": isMobile ? "32px":"36px",
+    "font-family": "auto",
+    "font-weight": "100",
+    "letter-spacing": "0px",
+    color: "#000000",
+    opacity: "1",
+
+
+    display: "flex",
+    justifyContent: 'center',
+    alignItems: 'center',
   };
 
   const StyleContentInputcont =
@@ -238,21 +268,9 @@ export const CustomAppCalculator = () => {
     "margin-top": "12px",
   }
 
-  const StyleContentInputDiv =
-  {
-    width: "10%",
-    height: "20px",
-    /* UI Properties */
-    "text-align": "center",
-    "font-size": isMobile ? "32px":"40px",
-    "font-family": "auto",
-    "font-weight": "100",
-    "letter-spacing": "0px",
-    color: "#000000",
-    opacity: "1",
-  };
 
-  const StyleInput =
+
+  const InputMeterBox =
   {
     width: "38px",
     height: isMobile ? "20px":"26px",
@@ -272,18 +290,24 @@ export const CustomAppCalculator = () => {
     "margin-bottom": "2px",
   };
 
-  const StyleLabelInputs =
+  const LabelInputs =
   {
     top: "556px",
     left: "1261px",
-    width: "21px",
-    height: isMobile ? "18px":"21px",
+    /*width: "21px",*/
+    /*height: isMobile ? "18px":"21px",*/
+    height: "100%",
     /* UI Properties */
     "text-align": "left",
-    "letter-spacing": "-1px",
+    "letter-spacing": "0px",
     "font-size": isMobile ? "16px":"19px",
     color: "#747474",
     opacity: "1",
+
+
+    display: "flex",
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 
   const StyleInputRadio =
@@ -342,7 +366,7 @@ export const CustomAppCalculator = () => {
   {
     "padding-left": "1px",
     color: "#747474",
-    "font-size": isMobile ? "10px" : "14px",
+    "font-size": isMobile ? "12px" : "14px",
     "font-style": "normal",
     "font-weight": "550",
     "font-family": "NeutraTextBook",
@@ -357,7 +381,7 @@ export const CustomAppCalculator = () => {
     "box-sizing": "border-box",
     "text-align": "center",
     "letter-spacing": "0px",
-    "font-size": "14px",
+    "font-size": isMobile ? "12px":"14px",
     "font-family": "NeutraTextBook",
   }
 
@@ -367,7 +391,7 @@ export const CustomAppCalculator = () => {
     "box-sizing": "border-box",
     "text-align": "center",
     "letter-spacing": "0px",
-    "font-size": isMobile ? "1.6rem" : "2.0rem", /* 25/30*/
+    "font-size": isMobile ? "28px" : "34px", /* 25/30*/
     "font-weight": "bolder",
     display: "block",
     "font-family": "NeutraTextBook",
@@ -400,7 +424,7 @@ export const CustomAppCalculator = () => {
   const bt_wh_red_text =
   {
     "text-decoration": "none",
-    "font-size":  isMobile ? "1.6rem" : "2.0rem",
+    "font-size":  isMobile ? "24px" : "29px",
     "font-weight": "bolder",
     "font-family": "NeutraTextBook",
     padding: "1px 8px 8px 0px",
@@ -448,13 +472,14 @@ export const CustomAppCalculator = () => {
         setSkuFreeSample(FreeSample.values[0])
       }
 
-      const handleResize = () =>
-      {
-        setIsMobile(window.innerWidth < 768);
-      };
+      const handleResize = () => { setIsMobile(window.innerWidth < MOBILE_BREAKPOINT); };
       window.addEventListener('resize', handleResize);
       //return () => window.removeEventListener('resize', handleResize);
-      setInputMetersRaw(1 * 1.8)
+      window.removeEventListener('resize', handleResize);
+
+      const unitM = selectedItem?.unitMultiplier
+      if(typeof unitM === "number")
+        setInputMetersRawFix2(1, unitM);
     }
   }, [product])
 
@@ -476,7 +501,7 @@ export const CustomAppCalculator = () => {
     {
       const boxCount = Math.ceil(inputNumber / unitMultiplier)
       setCantBox(boxCount)
-      setInputMetersRaw(boxCount * unitMultiplier)
+      setInputMetersRawFix2(boxCount, unitMultiplier)
       //Pegante =========> const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))
       //Pegante =========> setCantGlue(glue)
     }
@@ -495,7 +520,7 @@ export const CustomAppCalculator = () => {
     {
       const metersCount = Math.trunc(inputNumber * unitMultiplier)
       setInputMeters(metersCount)
-      setInputMetersRaw(inputNumber * unitMultiplier)
+      setInputMetersRawFix2(inputNumber, unitMultiplier);
     }
   }
 
@@ -509,9 +534,18 @@ export const CustomAppCalculator = () => {
       {
         const metersCount = Math.trunc((cantBox - 1) * unitMultiplier)
         setInputMeters(metersCount)
-        setInputMetersRaw((cantBox - 1) * unitMultiplier)
+        setInputMetersRawFix2((cantBox - 1), unitMultiplier);
+
       } //if
     } //if
+  }
+
+  const setInputMetersRawFix2 = (Boxs: number, unitMultiplier: number) =>
+  {
+    let VarTemp = Boxs * unitMultiplier;
+    const VarTemp2 = parseFloat(VarTemp.toFixed(1));
+    setInputMetersRaw(VarTemp2);
+    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
   }
 
   const OneBoxMore = () =>
@@ -522,7 +556,8 @@ export const CustomAppCalculator = () => {
     {
       const metersCount = Math.trunc((cantBox + 1) * unitMultiplier)
       setInputMeters(metersCount)
-      setInputMetersRaw((cantBox + 1) * unitMultiplier)
+
+      setInputMetersRawFix2((cantBox + 1), unitMultiplier);
     } //if
   }
 
@@ -536,7 +571,7 @@ export const CustomAppCalculator = () => {
       {
         const boxCount = Math.ceil((inputMeters - 1) / unitMultiplier)
         setCantBox(boxCount)
-        setInputMetersRaw(boxCount * unitMultiplier)
+        setInputMetersRawFix2(boxCount, unitMultiplier);
       } //if
     } //if
   }
@@ -549,7 +584,8 @@ export const CustomAppCalculator = () => {
     {
       const boxCount = Math.ceil((inputMeters + 1) / unitMultiplier)
       setCantBox(boxCount)
-      setInputMetersRaw(boxCount * unitMultiplier)
+
+      setInputMetersRawFix2(boxCount, unitMultiplier);
     } //if
   }
 
@@ -650,7 +686,8 @@ export const CustomAppCalculator = () => {
       if (unitMultiplier) {
         const boxCount = Math.ceil(beforeCheckInput / unitMultiplier)
         setCantBox(boxCount)
-        setInputMetersRaw(boxCount * unitMultiplier)
+
+        setInputMetersRawFix2(boxCount, unitMultiplier);
 
         //Pegante =========> const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))
         //Pegante =========> setCantGlue(glue)
@@ -662,7 +699,8 @@ export const CustomAppCalculator = () => {
       if (unitMultiplier) {
         const boxCount = Math.ceil(result / unitMultiplier)
         setCantBox(boxCount)
-        setInputMetersRaw(boxCount * unitMultiplier)
+
+        setInputMetersRawFix2(boxCount, unitMultiplier);
 
         //Pegante =========> const glue = Math.ceil(((boxCount * unitMultiplier) / unitMultiplierGlue))
         //Pegante =========> setCantGlue(glue)
@@ -738,10 +776,10 @@ export const CustomAppCalculator = () => {
 
           <div style={StyleContenedorInterno}>
 
-            <div style={StyleContenedorPriceUnit}>
+            <div style={ContenedorPriceUnit}>
               <span style={StyleLabelValor1}>{formatter.format((sellingPriceWithTax) ? sellingPriceWithTax : 0)} por M<sup>2</sup></span>
               <span style={StyleLabelValor2}>|</span>
-              <span style={StyleLabelValor3}> {formatter.format((unitMultiplier && sellingPriceWithTax) ? sellingPriceWithTax * unitMultiplier : 0)} por Caja </span>
+              <span style={StyleLabelValor1}> {formatter.format((unitMultiplier && sellingPriceWithTax) ? sellingPriceWithTax * unitMultiplier : 0)} por Caja </span>
             </div>
 
             <div style={StyleContenedorLabelInfo}>
@@ -784,26 +822,26 @@ export const CustomAppCalculator = () => {
               </Modal>
             </div>
 
-            <div style={StyleContentInputs}>
+            <div style={ContentInputs}>
 
-              <div style={StyleContentInputInt}>
+              <div style={ContentInputInt}>
                 <div style={StyleContentInputcont}>
                   <span style={BtDirL} onClick={OneMeterMinus}>◀</span>
-                  <input style={StyleInput} value={inputMeters} onChange={inputChange} />
+                  <input style={InputMeterBox} value={inputMeters} onChange={inputChange} />
                   <span style={BtDirR} onClick={OneMeterMore}>▶</span>
                 </div>
-                <span style={StyleLabelInputs}>&nbsp;&nbsp;M<sup>2</sup></span>
+                <span style={LabelInputs}>&nbsp;&nbsp;M<sup>2</sup></span>
               </div>
 
-              <div style={StyleContentInputDiv}>|</div>
+              <div style={ContentInputDiv}>|</div>
 
-              <div style={StyleContentInputInt}>
+              <div style={ContentInputInt}>
                 <div style={StyleContentInputcont}>
                   <span style={BtDirL} onClick={OneBoxMinus}>◀</span>
-                  <input style={StyleInput} value={cantBox} onChange={inputChangeBox} />
+                  <input style={InputMeterBox} value={cantBox} onChange={inputChangeBox} />
                   <span style={BtDirR} onClick={OneBoxMore}>▶</span>
                 </div>
-                <span style={StyleLabelInputs}>&nbsp; Cajas</span>
+                <span style={LabelInputs}>&nbsp; Cajas</span>
               </div>
             </div>
 
