@@ -82,14 +82,14 @@ export const CustomAppCalculator = () => {
     alignItems: 'center',
   };
 
-  const StyleLabelValor1 =
+  const LabelValorMeterCaja =
   {
     width: "48%",
     height: "30px",
     /* UI Properties */
     "text-align": "center",
     "font-family": "NeutraTextBook",
-    "font-size": isMobile ? "18px" : "29px",
+    "font-size": isMobile ? "17px" : "26px",
     "letter-spacing": "0px",
     color: "#232323",
     opacity: "1",
@@ -181,6 +181,7 @@ export const CustomAppCalculator = () => {
     alignItems: 'center',
     minHeight: isMobile ? "40px":'50px',
     "margin-bottom":"5px",
+    "margin-top": isMobile ? "1px":"5px",
   };
 
   const ContentInputInt =
@@ -374,10 +375,10 @@ export const CustomAppCalculator = () => {
     "text-align": "center",
   }
 
-  const StyleDivLblMeterTotal =
+  const DivLblMeterTotal =
   {
     width: "100%",
-    padding: "10px",
+    "padding-top": "10px",
     "box-sizing": "border-box",
     "text-align": "center",
     "letter-spacing": "0px",
@@ -385,7 +386,7 @@ export const CustomAppCalculator = () => {
     "font-family": "NeutraTextBook",
   }
 
-  const StyleDivLblPriceTotal =
+  const DivLblPriceTotal =
   {
     width: "100%",
     "box-sizing": "border-box",
@@ -777,9 +778,9 @@ export const CustomAppCalculator = () => {
           <div style={StyleContenedorInterno}>
 
             <div style={ContenedorPriceUnit}>
-              <span style={StyleLabelValor1}>{formatter.format((sellingPriceWithTax) ? sellingPriceWithTax : 0)} por M<sup>2</sup></span>
+              <span style={LabelValorMeterCaja}>{formatter.format((sellingPriceWithTax) ? sellingPriceWithTax : 0)} por M<sup>2</sup></span>
               <span style={StyleLabelValor2}>|</span>
-              <span style={StyleLabelValor1}> {formatter.format((unitMultiplier && sellingPriceWithTax) ? sellingPriceWithTax * unitMultiplier : 0)} por Caja </span>
+              <span style={LabelValorMeterCaja}> {formatter.format((unitMultiplier && sellingPriceWithTax) ? sellingPriceWithTax * unitMultiplier : 0)} por Caja </span>
             </div>
 
             <div style={StyleContenedorLabelInfo}>
@@ -867,8 +868,8 @@ export const CustomAppCalculator = () => {
 
 
           {/* ===============  Span pasarlo a input ===============  */}
-          <div style={StyleDivLblMeterTotal}> Metros totales: {inputMetersRaw} M<sup>2</sup> </div>
-          <span style={StyleDivLblPriceTotal}>Precio Total: &nbsp; {formatter.format((sellingPriceWithTax && unitMultiplier) ? (sellingPriceWithTax * unitMultiplier) * cantBox : 0)} </span>
+          <div style={DivLblMeterTotal}> Metros totales: {inputMetersRaw} M<sup>2</sup> </div>
+          <span style={DivLblPriceTotal}>Precio Total: &nbsp; {formatter.format((sellingPriceWithTax && unitMultiplier) ? (sellingPriceWithTax * unitMultiplier) * cantBox : 0)} </span>
 
 
           {/* ================  Bloque de pegantes... Quitado por segunda vez Soporte #02.660.468 =======================
