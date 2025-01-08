@@ -58,7 +58,7 @@ export const CustomAppCalculator = () => {
     top: "453px",
     left: "1061px",
     width: "100%",
-    height:  isMobile ? "300px": "350px",
+    height: isMobile ? "300px" : "350px",
     "text-align": "center",
   };
 
@@ -69,8 +69,8 @@ export const CustomAppCalculator = () => {
 
   const ContenedorPriceUnit =
   {
-    "padding-top": isMobile ?  "1px":"20px",
-    "padding-bottom": isMobile ?  "1px":"20px",
+    "padding-top": isMobile ? "1px" : "20px",
+    "padding-bottom": isMobile ? "1px" : "20px",
     width: "100%",
     opacity: "1",
 
@@ -110,7 +110,7 @@ export const CustomAppCalculator = () => {
     height: "10px",
     /* UI Properties */
     "text-align": "center",
-    "font-size":  isMobile ? "30px" :"36px",
+    "font-size": isMobile ? "30px" : "36px",
     "font-family": "auto",
     "font-weight": "100",
     "letter-spacing": "0px",
@@ -141,7 +141,7 @@ export const CustomAppCalculator = () => {
     "text-align": "center",
     "font-size": isMobile ? '12px' : "14px",
     "font-family": "NeutraTextBook",
-    "letter-spacing": isMobile ? "-0.856px":"0.4px",
+    "letter-spacing": isMobile ? "-0.856px" : "0.4px",
     color: "#747474",
     opacity: "1",
   };
@@ -164,7 +164,7 @@ export const CustomAppCalculator = () => {
     top: "544px",
     left: "1113px",
     width: "100%",
-    height: isMobile ? "42px":"50px",
+    height: isMobile ? "42px" : "50px",
     /*
     "margin-top":"5px",
     "margin-bottom":"10px",
@@ -179,9 +179,9 @@ export const CustomAppCalculator = () => {
     opacity: "1",
     display: "flex",
     alignItems: 'center',
-    minHeight: isMobile ? "40px":'50px',
-    "margin-bottom":"5px",
-    "margin-top": isMobile ? "1px":"5px",
+    minHeight: isMobile ? "40px" : '50px',
+    "margin-bottom": "5px",
+    "margin-top": isMobile ? "1px" : "5px",
   };
 
   const ContentInputInt =
@@ -203,7 +203,7 @@ export const CustomAppCalculator = () => {
     display: "flex",
     justifyContent: 'center',
     alignItems: 'center',
-    minHeight: isMobile ? "40px":'50px',
+    minHeight: isMobile ? "40px" : '50px',
   };
 
   const ContentInputDiv =
@@ -212,7 +212,7 @@ export const CustomAppCalculator = () => {
     height: "20px",
     /* UI Properties */
     "text-align": "center",
-    "font-size": isMobile ? "32px":"36px",
+    "font-size": isMobile ? "32px" : "36px",
     "font-family": "auto",
     "font-weight": "100",
     "letter-spacing": "0px",
@@ -228,11 +228,11 @@ export const CustomAppCalculator = () => {
   const StyleContentInputcont =
   {
     background: "#FFF 0% 0% no-repeat padding-box",
-    "border-radius": isMobile ? "6px":"13px",
-    "padding-top": isMobile ? "10px":"8px",
-    "padding-bottom":"10px",
-    width: isMobile ? "85px":"74px",
-    height: isMobile ? "30px":"38px",
+    "border-radius": isMobile ? "6px" : "13px",
+    "padding-top": isMobile ? "10px" : "8px",
+    "padding-bottom": "10px",
+    width: isMobile ? "85px" : "74px",
+    height: isMobile ? "30px" : "38px",
     /* UI Properties */
     "text-align": "center",
     "font-size": "24px",
@@ -246,7 +246,7 @@ export const CustomAppCalculator = () => {
 
   const BtDirL =
   {
-    color:"#6A6A6A",
+    color: "#6A6A6A",
     width: "1px",
     height: "20px",
     border: "none",
@@ -259,7 +259,7 @@ export const CustomAppCalculator = () => {
 
   const BtDirR =
   {
-    color:"#6A6A6A",
+    color: "#6A6A6A",
     width: "1px",
     height: "20px",
     border: "none",
@@ -274,14 +274,14 @@ export const CustomAppCalculator = () => {
   const InputMeterBox =
   {
     width: "38px",
-    height: isMobile ? "20px":"26px",
+    height: isMobile ? "20px" : "26px",
     /* UI Properties */
     background: "#FFFFFF 0% 0% no-repeat padding-box",
     "border-radius": "9px",
     "text-align": "center",
-    "font-size": isMobile ? "16px":"18px",
+    "font-size": isMobile ? "16px" : "18px",
     "font-family": "NeutraTextBook",
-    color:"#747474",
+    color: "#747474",
     border: "none",
     outline: "none",
     opacity: "1",
@@ -301,7 +301,7 @@ export const CustomAppCalculator = () => {
     /* UI Properties */
     "text-align": "left",
     "letter-spacing": "0px",
-    "font-size": isMobile ? "16px":"19px",
+    "font-size": isMobile ? "16px" : "19px",
     color: "#747474",
     opacity: "1",
 
@@ -317,50 +317,50 @@ export const CustomAppCalculator = () => {
     /*"justify-content": "space-between", */
   }
 
-/*
-  const StyleRadioButton =
-  {
-    "-webkit-appearance": "none",
-    "-moz-appearance": "none",
-    width: "20px",
-    height: "20px",
-    "margin-top": "4px",
-    "margin-right": "4px",
+  /*
+    const StyleRadioButton =
+    {
+      "-webkit-appearance": "none",
+      "-moz-appearance": "none",
+      width: "20px",
+      height: "20px",
+      "margin-top": "4px",
+      "margin-right": "4px",
 
-    border: "2px solid #333",
-    "border-radius": "5px",
-    cursor: "pointer",
-  }*/
-/*
-  const StyleRadioButton =
-  {
-    container: {
-      position: "relative",
-      display: "inline-block",
-      cursor: "pointer"
-    },
-    input: {
-      display: 'none'
-    },
-    checkmark: {
-      display: 'inline-block',
-      width: '16px',
-      height: '16px',
-      border: '2px solid #999',
-      background: 'white',
-    },
-    checked: {
-      '&::after': {
-        content: '"✓"',
-        color: 'red',
-        position: 'absolute',
-        left: '50%',
-        top: '45%',
-        transform: 'translate(-50%, -50%)',
+      border: "2px solid #333",
+      "border-radius": "5px",
+      cursor: "pointer",
+    }*/
+  /*
+    const StyleRadioButton =
+    {
+      container: {
+        position: "relative",
+        display: "inline-block",
+        cursor: "pointer"
+      },
+      input: {
+        display: 'none'
+      },
+      checkmark: {
+        display: 'inline-block',
+        width: '16px',
+        height: '16px',
+        border: '2px solid #999',
+        background: 'white',
+      },
+      checked: {
+        '&::after': {
+          content: '"✓"',
+          color: 'red',
+          position: 'absolute',
+          left: '50%',
+          top: '45%',
+          transform: 'translate(-50%, -50%)',
+        }
       }
-    }
-   };
-*/
+     };
+  */
 
 
   const StyleRadius_text =
@@ -382,7 +382,7 @@ export const CustomAppCalculator = () => {
     "box-sizing": "border-box",
     "text-align": "center",
     "letter-spacing": "0px",
-    "font-size": isMobile ? "12px":"14px",
+    "font-size": isMobile ? "12px" : "14px",
     "font-family": "NeutraTextBook",
   }
 
@@ -401,7 +401,7 @@ export const CustomAppCalculator = () => {
   /* ============== Boton  =============  */
   const bt_wh_red =
   {
-    button :
+    button:
     {
       width: "100%",
       "background-color": "#FFFFFF",
@@ -414,35 +414,35 @@ export const CustomAppCalculator = () => {
       transition: "color .35s ease-in-out, background-color .35s ease-in-out",
     }
   }
-/*
-  const bt_IcoCart =
-  {
-    height: "48px",
-    color: "#ED1B24",
-  }
-    */
+  /*
+    const bt_IcoCart =
+    {
+      height: "48px",
+      color: "#ED1B24",
+    }
+      */
 
   const bt_wh_red_text =
   {
     "text-decoration": "none",
-    "font-size":  isMobile ? "24px" : "29px",
+    "font-size": isMobile ? "24px" : "29px",
     "font-weight": "bolder",
     "font-family": "NeutraTextBook",
     padding: "1px 8px 8px 0px",
   }
-/*
-  const bt_wh_background =
-  {
-    "background-color": "#FFFFFF !important",
-  }
-*/
+  /*
+    const bt_wh_background =
+    {
+      "background-color": "#FFFFFF !important",
+    }
+  */
   const bt_wh_red_txt =
   {
     normal:
     {
       "text-decoration": "none",
       color: "#ED2024",
-      "font-size":  isMobile ? "1.6rem" : "2.0rem",
+      "font-size": isMobile ? "1.6rem" : "2.0rem",
       "font-weight": "bolder",
       "font-family": "NeutraTextBook",
       padding: "1px 8px 8px 0px",
@@ -479,7 +479,7 @@ export const CustomAppCalculator = () => {
       window.removeEventListener('resize', handleResize);
 
       const unitM = selectedItem?.unitMultiplier
-      if(typeof unitM === "number")
+      if (typeof unitM === "number")
         setInputMetersRawFix2(1, unitM);
     }
   }, [product])
@@ -498,8 +498,7 @@ export const CustomAppCalculator = () => {
 
     setInputMeters(inputNumber)
     setCheckMore(false)
-    if (unitMultiplier)
-    {
+    if (unitMultiplier) {
       const boxCount = Math.ceil(inputNumber / unitMultiplier)
       setCantBox(boxCount)
       setInputMetersRawFix2(boxCount, unitMultiplier)
@@ -509,30 +508,25 @@ export const CustomAppCalculator = () => {
 
   }
 
-  {/* ==================== Evento cambio de valor en edit de cajas =========================== */}
-  const inputChangeBox = (input: ChangeEvent<HTMLInputElement>) =>
-  {
+  {/* ==================== Evento cambio de valor en edit de cajas =========================== */ }
+  const inputChangeBox = (input: ChangeEvent<HTMLInputElement>) => {
     const { value } = input.target
     const inputNumber = validateInputNumber(value) ? parseInt(value) : value === '' ? 0 : cantBox !== 0 ? cantBox : 0
     setCantBox(inputNumber)
     setCheckMore(false)
 
-    if (unitMultiplier)
-    {
+    if (unitMultiplier) {
       const metersCount = Math.trunc(inputNumber * unitMultiplier)
       setInputMeters(metersCount)
       setInputMetersRawFix2(inputNumber, unitMultiplier);
     }
   }
 
-  const OneBoxMinus = () =>
-  {
+  const OneBoxMinus = () => {
     setCheckMore(false)
-    if (cantBox > 1)
-    {
+    if (cantBox > 1) {
       setCantBox(cantBox - 1)
-      if (unitMultiplier)
-      {
+      if (unitMultiplier) {
         const metersCount = Math.trunc((cantBox - 1) * unitMultiplier)
         setInputMeters(metersCount)
         setInputMetersRawFix2((cantBox - 1), unitMultiplier);
@@ -541,20 +535,17 @@ export const CustomAppCalculator = () => {
     } //if
   }
 
-  const setInputMetersRawFix2 = (Boxs: number, unitMultiplier: number) =>
-  {
+  const setInputMetersRawFix2 = (Boxs: number, unitMultiplier: number) => {
     let VarTemp = Boxs * unitMultiplier;
     const VarTemp2 = parseFloat(VarTemp.toFixed(1));
     setInputMetersRaw(VarTemp2);
     setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
   }
 
-  const OneBoxMore = () =>
-  {
+  const OneBoxMore = () => {
     setCheckMore(false)
     setCantBox(cantBox + 1)
-    if (unitMultiplier)
-    {
+    if (unitMultiplier) {
       const metersCount = Math.trunc((cantBox + 1) * unitMultiplier)
       setInputMeters(metersCount)
 
@@ -562,14 +553,11 @@ export const CustomAppCalculator = () => {
     } //if
   }
 
-  const OneMeterMinus = () =>
-  {
-    if (inputMeters > 1)
-    {
+  const OneMeterMinus = () => {
+    if (inputMeters > 1) {
       setCheckMore(false)
       setInputMeters(inputMeters - 1)
-      if (unitMultiplier)
-      {
+      if (unitMultiplier) {
         const boxCount = Math.ceil((inputMeters - 1) / unitMultiplier)
         setCantBox(boxCount)
         setInputMetersRawFix2(boxCount, unitMultiplier);
@@ -577,12 +565,10 @@ export const CustomAppCalculator = () => {
     } //if
   }
 
-  const OneMeterMore = () =>
-  {
+  const OneMeterMore = () => {
     setCheckMore(false)
     setInputMeters(inputMeters + 1)
-    if (unitMultiplier)
-    {
+    if (unitMultiplier) {
       const boxCount = Math.ceil((inputMeters + 1) / unitMultiplier)
       setCantBox(boxCount)
 
@@ -680,8 +666,7 @@ export const CustomAppCalculator = () => {
 
   }
 
-  const checkMoreCant = () =>
-  {
+  const checkMoreCant = () => {
     if (checkMore) {
       setInputMeters(beforeCheckInput)
       if (unitMultiplier) {
@@ -764,7 +749,7 @@ export const CustomAppCalculator = () => {
     await addItem(items)
     setLoadingFreeSample(false)
     showToast({
-      message: `La muestra gratis se agregó al carrito`,
+      message: 'La muestra gratis se agregó al carrito',
       duration: 3000,
       horizontalPosition: 'left',
     })
@@ -778,9 +763,9 @@ export const CustomAppCalculator = () => {
           <div style={StyleContenedorInterno}>
 
             <div style={ContenedorPriceUnit}>
-              <span style={LabelValorMeterCaja}>{formatter.format((sellingPriceWithTax) ? sellingPriceWithTax : 0)} por M<sup>2</sup></span>
+              <span style={LabelValorMeterCaja}>{formatter.format((sellingPriceWithTax) ? Math.trunc(sellingPriceWithTax) : 0)} por M<sup>2</sup></span>
               <span style={StyleLabelValor2}>|</span>
-              <span style={LabelValorMeterCaja}> {formatter.format((unitMultiplier && sellingPriceWithTax) ? sellingPriceWithTax * unitMultiplier : 0)} por Caja </span>
+              <span style={LabelValorMeterCaja}> {formatter.format((unitMultiplier && sellingPriceWithTax) ? Math.trunc(sellingPriceWithTax * unitMultiplier) : 0)} por Caja </span>
             </div>
 
             <div style={StyleContenedorLabelInfo}>
@@ -846,12 +831,11 @@ export const CustomAppCalculator = () => {
               </div>
             </div>
 
-
           </div>
 
           <div style={StyleInputRadio}>
             <label className={handles.radius_label}>
-              <input  type='radio' checked={checkMore} onClick={checkMoreCant} />
+              <input type='radio' checked={checkMore} onClick={checkMoreCant} />
               &nbsp;
               <span style={StyleRadius_text}>Recomendamos agregar el 10% adicional</span>
 
@@ -866,10 +850,9 @@ export const CustomAppCalculator = () => {
           </div>
 
 
-
           {/* ===============  Span pasarlo a input ===============  */}
           <div style={DivLblMeterTotal}> Metros totales: {inputMetersRaw} M<sup>2</sup> </div>
-          <span style={DivLblPriceTotal}>Precio Total: &nbsp; {formatter.format((sellingPriceWithTax && unitMultiplier) ? (sellingPriceWithTax * unitMultiplier) * cantBox : 0)} </span>
+          <span style={DivLblPriceTotal}>Precio Total: &nbsp; {formatter.format((sellingPriceWithTax && unitMultiplier) ? Math.trunc((sellingPriceWithTax * unitMultiplier) * cantBox) : 0)} </span>
 
 
           {/* ================  Bloque de pegantes... Quitado por segunda vez Soporte #02.660.468 =======================
@@ -942,8 +925,8 @@ export const CustomAppCalculator = () => {
 
                 <div className={handles.btn_img_list}>
                   <button className={handles.btn_free}
-                          disabled={loading}
-                          onClick={() => addToCartAll(showToast)}>
+                    disabled={loading}
+                    onClick={() => addToCartAll(showToast)}>
                     {loading ?
                       <Spinner color="currentColor" size={30} /> :
                       <div>
