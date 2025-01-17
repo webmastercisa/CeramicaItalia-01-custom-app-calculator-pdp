@@ -878,7 +878,7 @@ export const CustomAppCalculator = () => {
                       {loading ?
                         <Spinner color="currentColor" size={30} /> :
                         <div className={handles.btn_add_content}><IcoCart4628 />
-                          <span style={bt_wh_red_txt.normal}>Añadir al carrito!</span>
+                          <span className={handles.txt_neutra_alt_bold} style={bt_wh_red_txt.normal}>Añadir al carrito!</span>
                         </div>
                       }
                     </button>
@@ -925,8 +925,7 @@ export const CustomAppCalculator = () => {
                       <Spinner color="currentColor" size={30} /> :
                       <div>
                         <IcoCart4628 />
-                        <span className={handles.txt_neutra_alt_bold} style={bt_wh_red_text}
-                        >Añadir al carrito</span>
+                        <span className={handles.txt_neutra_alt_bold} style={bt_wh_red_text}>Añadir al carrito</span>
                       </div>
                     }
                   </button>
