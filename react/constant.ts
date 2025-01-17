@@ -97,5 +97,9 @@ export const CSS_HANDLES = [
   "title_area_quote",
   "btn_whatsapp_buy",
   "btn_add_with_whatsapp",
-  "link--ver-salas"
+  "link--ver-salas",
+  "txt_center",
+  "txt_neutra",
+  "txt_neutra_tf",
+  "txt_neutra_alt_bold"
 ]

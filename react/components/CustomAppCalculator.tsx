@@ -73,10 +73,6 @@ export const CustomAppCalculator = () => {
     "padding-bottom": isMobile ? "1px" : "20px",
     width: "100%",
     opacity: "1",
-
-
-
-
     display: "flex",
     justifyContent: 'center',
     alignItems: 'center',
@@ -88,7 +84,7 @@ export const CustomAppCalculator = () => {
     height: "30px",
     /* UI Properties */
     "text-align": "center",
-    "font-family": "NeutraTextBook",
+    /*"font-family": "NeutraTextBook",*/
     "font-size": isMobile ? "17px" : "26px",
     "letter-spacing": "0px",
     color: "#232323",
@@ -139,9 +135,9 @@ export const CustomAppCalculator = () => {
     height: "16px",
     /* UI Properties */
     "text-align": "center",
-    "font-size": isMobile ? '12px' : "14px",
-    "font-family": "NeutraTextBook",
-    "letter-spacing": isMobile ? "-0.856px" : "0.4px",
+    "font-size": isMobile ? '12px' : "16px",
+    /*"font-family": "NeutraTextBook",*/
+    "letter-spacing": isMobile ? "-0.856px" : "0.2px",
     color: "#747474",
     opacity: "1",
   };
@@ -151,7 +147,7 @@ export const CustomAppCalculator = () => {
     width: "25%",
     height: "14px",
     "font-size": isMobile ? '8px' : "11px",
-    "font-family": "NeutraTextBook",
+    /*"font-family": "NeutraTextBook",*/
     "letter-spacing": "0px",
     "padding-top": "3px",
     color: "#FF0000",
@@ -173,7 +169,7 @@ export const CustomAppCalculator = () => {
     */
 
     /* UI Properties */
-    "font-family": "NeutraTextBook",
+    /*"font-family": "NeutraTextBook",*/
     background: "#DAD8D8 0% 0% no-repeat padding-box",
     "border-radius": "10px",
     opacity: "1",
@@ -195,7 +191,7 @@ export const CustomAppCalculator = () => {
     /* UI Properties */
     "text-align": "center",
     "font-size": "24px",
-    "font-family": "NeutraTextBook",
+    /*"font-family": "NeutraTextBook",*/
     "letter-spacing": "0px",
     color: "#FF0000",
     opacity: "1",
@@ -236,7 +232,7 @@ export const CustomAppCalculator = () => {
     /* UI Properties */
     "text-align": "center",
     "font-size": "24px",
-    "font-family": "NeutraTextBook",
+    /*"font-family": "NeutraTextBook",*/
     "letter-spacing": "0px",
     color: "#FF0000",
     opacity: "1",
@@ -280,7 +276,7 @@ export const CustomAppCalculator = () => {
     "border-radius": "9px",
     "text-align": "center",
     "font-size": isMobile ? "16px" : "18px",
-    "font-family": "NeutraTextBook",
+    /*"font-family": "NeutraTextBook",*/
     color: "#747474",
     border: "none",
     outline: "none",
@@ -301,11 +297,9 @@ export const CustomAppCalculator = () => {
     /* UI Properties */
     "text-align": "left",
     "letter-spacing": "0px",
-    "font-size": isMobile ? "16px" : "19px",
+    "font-size": isMobile ? "16px" : "21px",
     color: "#747474",
     opacity: "1",
-
-
     display: "flex",
     justifyContent: 'center',
     alignItems: 'center',
@@ -370,7 +364,6 @@ export const CustomAppCalculator = () => {
     "font-size": isMobile ? "12px" : "14px",
     "font-style": "normal",
     "font-weight": "550",
-    "font-family": "NeutraTextBook",
     "line-height": "normal",
     "text-align": "center",
   }
@@ -383,7 +376,7 @@ export const CustomAppCalculator = () => {
     "text-align": "center",
     "letter-spacing": "0px",
     "font-size": isMobile ? "12px" : "14px",
-    "font-family": "NeutraTextBook",
+    "padding-bottom": "10px",
   }
 
   const DivLblPriceTotal =
@@ -392,11 +385,12 @@ export const CustomAppCalculator = () => {
     "box-sizing": "border-box",
     "text-align": "center",
     "letter-spacing": "0px",
-    "font-size": isMobile ? "28px" : "34px", /* 25/30*/
+    "font-size": isMobile ? "28px" : "34px",
     "font-weight": "bolder",
     display: "block",
-    "font-family": "NeutraTextBook",
+    "padding-bottom": "10px"
   }
+
 
   /* ============== Boton  =============  */
   const bt_wh_red =
@@ -425,9 +419,9 @@ export const CustomAppCalculator = () => {
   const bt_wh_red_text =
   {
     "text-decoration": "none",
-    "font-size": isMobile ? "24px" : "29px",
+    "font-size": isMobile ? "24px" : "30px",
     "font-weight": "bolder",
-    "font-family": "NeutraTextBook",
+    /*"font-family": "NeutraTextBook",*/
     padding: "1px 8px 8px 0px",
   }
   /*
@@ -444,7 +438,7 @@ export const CustomAppCalculator = () => {
       color: "#ED2024",
       "font-size": isMobile ? "1.6rem" : "2.0rem",
       "font-weight": "bolder",
-      "font-family": "NeutraTextBook",
+      /*"font-family": "NeutraTextBook",*/
       padding: "1px 8px 8px 0px",
       /*padding: "1px 40px",*/
     },
@@ -454,7 +448,7 @@ export const CustomAppCalculator = () => {
       color: "#FFFFFF",
       "font-size": "30px",
       "font-weight": "bolder",
-      "font-family": "NeutraTextBook",
+      /*"font-family": "NeutraTextBook",*/
       padding: "1px 8px 8px 0px",
       /*padding: "1px 40px",*/
     }
@@ -763,14 +757,14 @@ export const CustomAppCalculator = () => {
           <div style={StyleContenedorInterno}>
 
             <div style={ContenedorPriceUnit}>
-              <span style={LabelValorMeterCaja}>{formatter.format((sellingPriceWithTax) ? Math.trunc(sellingPriceWithTax) : 0)} por M<sup>2</sup></span>
+              <span className={handles.txt_neutra_alt_bold} style={LabelValorMeterCaja}>{formatter.format((sellingPriceWithTax) ? Math.trunc(sellingPriceWithTax) : 0)} por M<sup>2</sup></span>
               <span style={StyleLabelValor2}>|</span>
-              <span style={LabelValorMeterCaja}> {formatter.format((unitMultiplier && sellingPriceWithTax) ? Math.trunc(sellingPriceWithTax * unitMultiplier) : 0)} por Caja </span>
+              <span className={handles.txt_neutra_alt_bold} style={LabelValorMeterCaja}> {formatter.format((unitMultiplier && sellingPriceWithTax) ? Math.trunc(sellingPriceWithTax * unitMultiplier) : 0)} por Caja </span>
             </div>
 
             <div style={StyleContenedorLabelInfo}>
-              <span style={StyleLabelInfo1}>Ingresa la cantidad de Metros o cajas que necesitas</span>
-              <span style={StyleLabelInfo2} onClick={() => setShowCal(true)}> ¿Cómo calculo los M2? </span>
+              <span className={handles.txt_neutra} style={StyleLabelInfo1}>Ingresa la cantidad de Metros o cajas que necesitas</span>
+              <span className={handles.txt_neutra} style={StyleLabelInfo2} onClick={() => setShowCal(true)}> ¿Cómo calculo los M2? </span>
               <Modal show={showCal} setShow={setShowCal} >
                 {/* <div className={handles.modal_open}> */}
                 <div className={handles.title_area_quote}> <span>Cotiza tu Espacio</span> </div>
@@ -813,10 +807,10 @@ export const CustomAppCalculator = () => {
               <div style={ContentInputInt}>
                 <div style={StyleContentInputcont}>
                   <span style={BtDirL} onClick={OneMeterMinus}>◀</span>
-                  <input style={InputMeterBox} value={inputMeters} onChange={inputChange} />
+                  <input className={handles.txt_neutra} style={InputMeterBox} value={inputMeters} onChange={inputChange} />
                   <span style={BtDirR} onClick={OneMeterMore}>▶</span>
                 </div>
-                <span style={LabelInputs}>&nbsp;&nbsp;M<sup>2</sup></span>
+                <span className={handles.txt_neutra} style={LabelInputs}>&nbsp;&nbsp;M<sup>2</sup></span>
               </div>
 
               <div style={ContentInputDiv}>|</div>
@@ -824,10 +818,10 @@ export const CustomAppCalculator = () => {
               <div style={ContentInputInt}>
                 <div style={StyleContentInputcont}>
                   <span style={BtDirL} onClick={OneBoxMinus}>◀</span>
-                  <input style={InputMeterBox} value={cantBox} onChange={inputChangeBox} />
+                  <input className={handles.txt_neutra} style={InputMeterBox} value={cantBox} onChange={inputChangeBox} />
                   <span style={BtDirR} onClick={OneBoxMore}>▶</span>
                 </div>
-                <span style={LabelInputs}>&nbsp; Cajas</span>
+                <span className={handles.txt_neutra} style={LabelInputs}>&nbsp; Cajas</span>
               </div>
             </div>
 
@@ -837,9 +831,9 @@ export const CustomAppCalculator = () => {
             <label className={handles.radius_label}>
               <input type='radio' checked={checkMore} onClick={checkMoreCant} />
               &nbsp;
-              <span style={StyleRadius_text}>Recomendamos agregar el 10% adicional</span>
+              <span className={handles.txt_neutra} style={StyleRadius_text}>Recomendamos agregar el 10% adicional</span>
 
-              <span style={StyleLabelInfo2} onClick={() => setShowWhy(true)}>&nbsp;&nbsp;&nbsp;¿Por qué?</span>
+              <span className={handles.txt_neutra} style={StyleLabelInfo2} onClick={() => setShowWhy(true)}>&nbsp;&nbsp;&nbsp;¿Por qué?</span>
               <Modal show={showWhy} setShow={setShowWhy} >
                 <div className={handles.content_modal_why_open}>
                   <span className={handles.content_modal_why_open_text}>Recomendamos agregar 10% adicional para cubrir los desperdicios en la instalación</span>
@@ -851,8 +845,8 @@ export const CustomAppCalculator = () => {
 
 
           {/* ===============  Span pasarlo a input ===============  */}
-          <div style={DivLblMeterTotal}> Metros totales: {inputMetersRaw} M<sup>2</sup> </div>
-          <span style={DivLblPriceTotal}>Precio Total: &nbsp; {formatter.format((sellingPriceWithTax && unitMultiplier) ? Math.trunc((sellingPriceWithTax * unitMultiplier) * cantBox) : 0)} </span>
+          <div className={handles.txt_neutra} style={DivLblMeterTotal}> Metros totales: {inputMetersRaw} M<sup>2</sup> </div>
+          <span className={handles.txt_neutra_alt_bold} style={DivLblPriceTotal}>Precio Total: &nbsp; {formatter.format((sellingPriceWithTax && unitMultiplier) ? Math.trunc((sellingPriceWithTax * unitMultiplier) * cantBox) : 0)} </span>
 
 
           {/* ================  Bloque de pegantes... Quitado por segunda vez Soporte #02.660.468 =======================
@@ -931,7 +925,7 @@ export const CustomAppCalculator = () => {
                       <Spinner color="currentColor" size={30} /> :
                       <div>
                         <IcoCart4628 />
-                        <span style={bt_wh_red_text}
+                        <span className={handles.txt_neutra_alt_bold} style={bt_wh_red_text}
                         >Añadir al carrito</span>
                       </div>
                     }
