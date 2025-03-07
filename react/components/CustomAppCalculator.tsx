@@ -531,7 +531,7 @@ export const CustomAppCalculator = () => {
 
   const setInputMetersRawFix2 = (Boxs: number, unitMultiplier: number) => {
     let VarTemp = Boxs * unitMultiplier;
-    const VarTemp2 = parseFloat(VarTemp.toFixed(1));
+    const VarTemp2 = parseFloat(VarTemp.toFixed(2));
     setInputMetersRaw(VarTemp2);
     setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
   }
