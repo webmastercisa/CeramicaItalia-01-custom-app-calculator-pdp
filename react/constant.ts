@@ -101,5 +101,5 @@ export const CSS_HANDLES = [
   "txt_center",
   "txt_neutra",
   "txt_neutra_tf",
-  "txt_neutra_alt_bold"
+  "txt_neutra_alt_bold",
 ]
