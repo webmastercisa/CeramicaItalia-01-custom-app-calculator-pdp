@@ -22,8 +22,9 @@ import { ProductContextState } from '../typings/ProductType';
 import { CSS_HANDLES, formatter, validateInputNumber } from '../constant';
 //Pegante =========> import { GlueBySku } from './GlueBySku';
 
+export const CustomAppCalculator = () =>
+{
 
-export const CustomAppCalculator = () => {
   const handles = useCssHandles(CSS_HANDLES)
   const { addItem } = useOrderItems()
   const { product, selectedItem } = useContext<ProductContextState>(ProductContext);
@@ -53,6 +54,7 @@ export const CustomAppCalculator = () => {
   const MOBILE_BREAKPOINT = 768;
   //const [isMobile, setIsMobile] = useState(window.innerWidth < MOBILE_BREAKPOINT);
   const [isMobile, setIsMobile] = useState(true);
+  const [cantidadStock, setStock] = useState(0)
 
 
   const StyleContenedor =
@@ -268,8 +270,6 @@ export const CustomAppCalculator = () => {
     "margin-top": "12px",
   }
 
-
-
   const InputMeterBox =
   {
     width: "38px",
@@ -358,7 +358,6 @@ export const CustomAppCalculator = () => {
       }
     };
   */
-
 
   const StyleRadius_text =
   {
@@ -534,7 +533,7 @@ export const CustomAppCalculator = () => {
       "background-color": "rgb(0 181 18)",
       border: "3px solidrgb(14, 146, 2)",
       "border-radius": "100px",
-      padding: "8px 8px 8px 8px",
+      padding: "5px 8px 8px 8px",
       height: "48px",
       color: "#FDFDFD",
       "text-decoration": "none",
@@ -554,10 +553,12 @@ export const CustomAppCalculator = () => {
     }
   }
 
-
-
   useEffect(() => {
-    if (product) {
+    if (product)
+    {
+      const skuId = selectedItem?.itemId!; //skuid
+
+      GetStockReal(skuId).then(stock => console.log('░▒▓ stock actual ▓▒░ █▀■▄▄■▀█',stock));
       //Pegante =========> const Glue = product.properties.find((pro) => pro.name === 'Id SKU Pegante')
       //Pegante =========> if (Glue && Glue.values.length > 0) {
       //Pegante =========>  setSkuGlue(Glue.values[0])
@@ -589,11 +590,12 @@ export const CustomAppCalculator = () => {
   const sellingPriceWithTax = (Price && taxPercentage && taxPercentage !== 0 && Tax && unitMultiplier) ? Math.ceil(Price + (Tax / unitMultiplier)) : Price
   const PrecioAhora = (sellingPriceWithTax) ? Math.trunc(sellingPriceWithTax) : 0
 
-  const CantDisponible = selectedItem?.sellers?.find(({ sellerDefault }) => sellerDefault === true)?.commertialOffer?.AvailableQuantity ?? 0
-  const VerDisponible = CantDisponible > 0 ? CantDisponible : 0
+  //const CantDisponible = selectedItem?.sellers?.find(({ sellerDefault }) => sellerDefault === true)?.commertialOffer?.AvailableQuantity ?? 0
+  //const VerDisponible = CantDisponible >= 1 ? CantDisponible : 0
+
+
 
   /*const measurementUnit = selectedItem?.measurementUnit*/ /*  RaySoft  */
-
 
   const inputChange = (input: ChangeEvent<HTMLInputElement>) => {
     const { value } = input.target
@@ -839,6 +841,62 @@ export const CustomAppCalculator = () => {
   //   window.location.href = 'https://cutt.ly/cexPOtcZ';
   // }
 
+  const GetStockReal = async ( skuId: string): Promise<number> =>
+  {
+    console.log('■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ Init APP ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ ');
+    console.log('■■■■■■■■■■ Iniciando la APP  ■■■■■■■■■■■■■■■ :', skuId);
+    console.log('■■■■■■■■■■ 🔔    Alarma Init.');
+    console.log('■■■■■■■■■■ 🚩    Core Init');
+    console.log('■■■■■■■■■■ 🚪    DB Init');
+    console.log('■■■■■■■■■■ 💬   Notificaciones push');
+    console.log('■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ ');
+
+    const URL_REST = '/api/logistics/pvt/inventory/skus/' + skuId;
+    const AppKey = "vtexappkey-ceramicaitalia-KPIVEZ";
+    const AppToken = "HHISOVRGNCSXESQTVWRZDOWWUFVUCJOWOAUXWILTVYRUGZPREKSXSFZFVOPIFNKEDLCPDOWOGHECBEGRYVCSXZCROGYXDDVWHFLUXQZMZHKPPLQTOXPJXFQMACTIUPUB";
+
+    interface InventoryResponse
+    {
+      balance: Array<{
+        warehouseId: string
+        warehouseName: string
+        totalQuantity: number
+        reservedQuantity: number
+        //availableQuantity: number
+      }>
+    }
+    try
+    {
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Accept", "application/json");
+        myHeaders.append("X-VTEX-API-AppKey", AppKey);
+        myHeaders.append("X-VTEX-API-AppToken", AppToken);
+
+        const requestOptions: RequestInit =
+        {
+          method: "GET",
+          headers: myHeaders,
+          mode: "no-cors"
+        };
+
+      const response = await fetch(URL_REST, requestOptions);  //  const response = await fetch(URL_REST, { headers })
+      if (!response.ok) { throw new Error(`Error ${response.status}: ${response.statusText}`) }
+      const data: InventoryResponse = await response.json()
+      if (!data?.balance?.length) { throw new Error('SKU no tiene inventario registrado') }
+      const totalStock = data.balance.reduce( (sum, warehouse) => sum + warehouse.totalQuantity, 0 ) //// Suma el availableQuantity totalQuantity de todos los warehouses
+      console.log('■■■■■■■■■■ 🚩🚩🚩🚩🚩🚩🚩 ■■■■■■■■■■  totalStock:', totalStock);
+      setStock(totalStock);
+      return totalStock
+    } //try
+    catch (error)
+    {
+      console.error('■■■■■■■■■■ 💀💀💀💀💀💀💀💀 ■■■■■■■■■■  Catch StockReal:', error)
+      return 0 // Valor por defecto en caso de error
+    } //catch
+  }
+
+
   const addToCartFreeSample = async (showToast: any) => {
     setLoadingFreeSample(true)
     const items = []
@@ -861,9 +919,10 @@ export const CustomAppCalculator = () => {
   return (
     <ToastConsumer>
       {({ showToast }: any) => (
-
         <div style={StyleContenedor}>
-          {(VerDisponible > 0) &&
+          <div style={TxtHide}> ______Cantidad disponible: {cantidadStock}________________________________</div>
+
+          {(cantidadStock > 0) &&
             <div>
               <div style={StyleContenedorInterno}>
 
@@ -962,7 +1021,7 @@ export const CustomAppCalculator = () => {
                   <span className={handles.txt_neutra_alt_bold} style={DivLblPriceTotal}>Precio Total: &nbsp; {formatter.format((sellingPriceWithTax && unitMultiplier) ? Math.trunc((sellingPriceWithTax * unitMultiplier) * cantBox) : 0)} </span>
                 */
               }
-              {(porcentajeDescuento > 0) &&
+              {(porcentajeDescuento >= 1) &&
                 <div>
                   <div style={TxtPrecioAhora}>
                     <div style={TxtDescuento}>-{Math.round(porcentajeDescuento)}% &nbsp; </div>
@@ -971,14 +1030,10 @@ export const CustomAppCalculator = () => {
                   <span className={handles.txt_neutra_alt_bold} style={TxtPrecioAntes}>Precio antes ${PrecioAntes.toLocaleString('es-ES')}</span>
                 </div>
               }
-              {(porcentajeDescuento <= 0) &&
+              {(porcentajeDescuento < 1) &&
                 <div className={handles.txt_neutra_alt_bold} style={TxtPrecioAhora}>
                   Precio: ${PrecioAhora.toLocaleString('es-ES')}
                 </div>
-              }
-
-              {
-                <div style={TxtHide}> ______Cantidad disponible: {CantDisponible}____{VerDisponible}_____________________________</div>
               }
 
               {
@@ -1076,19 +1131,18 @@ export const CustomAppCalculator = () => {
               </div>
             </div>   /* __________ Fin bloque con existencias ______________ */
           }
-          {(VerDisponible <= 0) &&
+          {(cantidadStock <= 0) &&
             <div style={DivNoDisponible}>
               <div style={StyleNoDisponible}>!Hola! por favor, <b>valida la disponibilidad de este producto </b>con uno de nuestros asesores.</div>
-              <p>
-                <a href='https://wa.me/573138364757' style={bt_wh_gua.button}>
-                  {loading ?
-                    <Spinner color="currentColor" size={30} /> :
-                    <div className={handles.btn_add_content}><IcoWhatsapp />
-                      <span className={handles.txt_neutra_alt_bold} style={bt_wh_gua.text}>Hablar con un asesor</span>
-                    </div>
-                  }
-                </a>
-              </p>
+              <br/>
+              <a href='https://wa.me/573138364757' style={bt_wh_gua.button}>
+                {loading ?
+                  <Spinner color="currentColor" size={30} /> :
+                  <div className={handles.btn_add_content}><IcoWhatsapp />
+                    <span className={handles.txt_neutra_alt_bold} style={bt_wh_gua.text}>Hablar con un asesor</span>
+                  </div>
+                }
+              </a>
             </div> /* __________ Fin bloque sin existencias ______________ */
           }
         </div> /* __________ StyleContenedor ______________ */
