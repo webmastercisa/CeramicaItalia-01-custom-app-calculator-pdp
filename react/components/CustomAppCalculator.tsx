@@ -892,7 +892,7 @@ export const CustomAppCalculator = () =>
     catch (error)
     {
       console.error('■■■■■■■■■■ 💀💀💀💀💀💀💀💀 ■■■■■■■■■■  Catch StockReal:', error)
-      return 0 // Valor por defecto en caso de error
+      return 5 // Valor por defecto en caso de error
     } //catch
   }
 
