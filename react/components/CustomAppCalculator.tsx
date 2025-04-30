@@ -21,6 +21,7 @@ import { Modal } from '../Atom/Modal'
 import { ProductContextState } from '../typings/ProductType';
 import { CSS_HANDLES, formatter, validateInputNumber } from '../constant';
 //Pegante =========> import { GlueBySku } from './GlueBySku';
+import { HeadScript } from './HeadScript';
 
 export const CustomAppCalculator = () =>
 {
@@ -54,7 +55,7 @@ export const CustomAppCalculator = () =>
   const MOBILE_BREAKPOINT = 768;
   //const [isMobile, setIsMobile] = useState(window.innerWidth < MOBILE_BREAKPOINT);
   const [isMobile, setIsMobile] = useState(true);
-  const [cantidadStock, setStock] = useState(0)
+  const [cantidadStock, setStock] = useState(5)
 
 
   const StyleContenedor =
@@ -1024,6 +1025,7 @@ export const CustomAppCalculator = () =>
                 </label>
               </div>
 
+            <HeadScript/>
 
               {/* ===============  Span pasarlo a input ===============  */}
               <div className={handles.txt_neutra} style={DivLblMeterTotal}> Metros totales: {inputMetersRaw} M<sup>2</sup> </div>
