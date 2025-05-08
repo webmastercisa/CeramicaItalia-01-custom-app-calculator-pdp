@@ -66,6 +66,7 @@ export const CustomAppCalculator = () =>
     width: "100%",
     height: isMobile ? "300px" : "350px",
     "text-align": "center",
+    "margin-bottom": "60px",
   };
 
   const StyleContenedorInterno =
@@ -75,8 +76,8 @@ export const CustomAppCalculator = () =>
 
   const ContenedorPriceUnit =
   {
-    "padding-top": isMobile ? "1px" : "20px",
-    "padding-bottom": isMobile ? "1px" : "20px",
+    "padding-top": isMobile ? "1px" : "10px",
+    "padding-bottom": isMobile ? "1px" : "2px",
     width: "100%",
     opacity: "1",
     display: "flex",
@@ -84,27 +85,24 @@ export const CustomAppCalculator = () =>
     alignItems: 'center',
   };
 
+  /*
   const LabelValorMeterCaja =
   {
     width: "48%",
     height: "30px",
-    /* UI Properties */
     "text-align": "center",
-    /*"font-family": "NeutraTextBook",*/
     "font-size": isMobile ? "17px" : "26px",
     "letter-spacing": "0px",
     color: "#232323",
     opacity: "1",
     "font-weight": "800",
 
-    /*
-    "margin-top": isMobile ?  "15px": "1px",
-    */
 
     display: "flex",
     justifyContent: 'center',
     alignItems: 'center',
   };
+*/
 
   const StyleLabelValor2 =
   {
@@ -381,39 +379,84 @@ export const CustomAppCalculator = () =>
     "font-size": isMobile ? "12px" : "14px",
     "padding-bottom": "10px",
   }
-  /*
+/*
     const DivLblPriceTotal =
     {
       width: "100%",
       "box-sizing": "border-box",
       "text-align": "center",
       "letter-spacing": "0px",
-      "font-size": isMobile ? "28px" : "34px",
-      "font-weight": "bolder",
       display: "block",
-      "padding-bottom": "10px"
+      "padding-bottom": "10px",
+      "font-size": isMobile ? "28px" : "34px",
+      "font-weight":"bold"
     }
-      */
+ */
+  const containerdiv=
+  {
+      /*position: "relative",*/
+      width: "48%",
+      height: "65px",
+      "font-family": "NeutraTextAltBold",
+      "font-size": isMobile ? "17px" : "24px",
+  }
+
+  const div1=
+  {
+    /*position: "absolute",*/
+    top: 0,
+    left: 0,
+    width: "100%",
+    display: "flex",
+    "justify-content": "center",
+    "align-items": "center",
+    "margin-bottom": "2px"
+  }
+
+  const div2=
+  {
+    top: 0,
+    left: 0,
+    display: "flex",
+    "justify-content": "center",
+    "align-items": "center",
+    width: "100%",
+    height: "10px",
+    "text-align": "center",
+    "letter-spacing": "0px",
+    color: "#232323",
+    opacity: "1",
+    "font-weight": "800",
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
+
+
+
   const TxtPrecioAhora =
   {
-    "font-family": "NeutraTextBook",
+    "font-family": "'NeutraTextAltBold'",
     "font-weight": "bolder",
     display: "inline-block",
     "letter-spacing": "0px",
     "padding-bottom": "10px",
     "box-sizing": "border-box",
     "text-align": "center",
-    "font-size": isMobile ? "20px" : "26px",
+    "font-size": isMobile ? "28px" : "36px",
     color: "#000000",
     width: "100%"
 
   }
+/*
   const TxtDescuento =
   {
     display: "inline-block",
+
     "font-size": isMobile ? "18px" : "22px",
     color: "#ed1b24"
   }
+  */
+
 
   const TxtHide =
   {
@@ -595,8 +638,10 @@ export const CustomAppCalculator = () =>
   const PrecioAntes = (selectedItem?.sellers[0]?.commertialOffer.PriceWithoutDiscount) ? selectedItem?.sellers[0]?.commertialOffer.PriceWithoutDiscount : 0 /* 02.791.603 */
   const porcentajeDescuento = (PrecioAntes !== 0 && Price) ? (((PrecioAntes - Price) / PrecioAntes) * 100) : 0
 
+  const precioAntesCaja=(unitMultiplier)? (PrecioAntes * unitMultiplier) : (PrecioAntes * 1)
+
   const sellingPriceWithTax = (Price && taxPercentage && taxPercentage !== 0 && Tax && unitMultiplier) ? Math.ceil(Price + (Tax / unitMultiplier)) : Price
-  const PrecioAhora = (sellingPriceWithTax) ? Math.trunc(sellingPriceWithTax) : 0
+  /*const PrecioAhora = (sellingPriceWithTax) ? Math.trunc(sellingPriceWithTax) : 0*/
 
   //const CantDisponible = selectedItem?.sellers?.find(({ sellerDefault }) => sellerDefault === true)?.commertialOffer?.AvailableQuantity ?? 0
   //const VerDisponible = CantDisponible >= 1 ? CantDisponible : 0
@@ -939,9 +984,26 @@ export const CustomAppCalculator = () =>
               <div style={StyleContenedorInterno}>
 
                 <div style={ContenedorPriceUnit}>
-                  <span className={handles.txt_neutra_alt_bold} style={LabelValorMeterCaja}>{formatter.format((sellingPriceWithTax) ? Math.trunc(sellingPriceWithTax) : 0)} por M<sup>2</sup></span>
+
+                  <div style={containerdiv}>
+                    <div style={div1}>
+                      {(porcentajeDescuento >= 1) && <span className={handles.txt_neutra_alt_bold} style={TxtPrecioAntes}>${PrecioAntes.toLocaleString('es-ES')}</span> }
+                    </div>
+                    <div className={handles.txt_neutra_alt_bold} style={div2}>
+                      {formatter.format((sellingPriceWithTax) ? Math.trunc(sellingPriceWithTax) : 0)} por M<sup>2</sup>
+                     </div>
+                  </div>
                   <span style={StyleLabelValor2}>|</span>
-                  <span className={handles.txt_neutra_alt_bold} style={LabelValorMeterCaja}> {formatter.format((unitMultiplier && sellingPriceWithTax) ? Math.trunc(sellingPriceWithTax * unitMultiplier) : 0)} por Caja </span>
+
+                  <div style={containerdiv}>
+                    <div style={div1}>
+                      {(porcentajeDescuento >= 1) && <span className={handles.txt_neutra_alt_bold} style={TxtPrecioAntes}>${precioAntesCaja.toLocaleString('es-ES')}</span> }
+                    </div>
+                    <div style={div2}>
+                      {formatter.format((unitMultiplier && sellingPriceWithTax) ? Math.trunc(sellingPriceWithTax * unitMultiplier ) : 0)} por Caja
+                     </div>
+                  </div>
+
                 </div>
 
                 <div style={StyleContenedorLabelInfo}>
@@ -1029,29 +1091,36 @@ export const CustomAppCalculator = () =>
 
               {/* ===============  Span pasarlo a input ===============  */}
               <div className={handles.txt_neutra} style={DivLblMeterTotal}> Metros totales: {inputMetersRaw} M<sup>2</sup> </div>
-              {
-                /*
-                  <span className={handles.txt_neutra_alt_bold} style={DivLblPriceTotal}>Precio Total: &nbsp; {formatter.format((sellingPriceWithTax && unitMultiplier) ? Math.trunc((sellingPriceWithTax * unitMultiplier) * cantBox) : 0)} </span>
-                */
-              }
-              {(porcentajeDescuento >= 1) &&
-                <div>
-                  <div style={TxtPrecioAhora}>
-                    <div style={TxtDescuento}>-{Math.round(porcentajeDescuento)}% &nbsp; </div>
-                    Precio ahora: ${PrecioAhora.toLocaleString('es-ES')}
+
+                <span className={handles.txt_neutra_alt_bold}>
+                </span>
+
+                {(porcentajeDescuento >= 1) &&
+                  <div>
+                    {/*
+                    <div style={TxtPrecioAhora}>
+                      <div style={TxtDescuento}>-{Math.round(porcentajeDescuento)}% &nbsp; </div>
+                      Precio ahora: ${PrecioAhora.toLocaleString('es-ES')}
+                    </div>
+                    */}
+                  {/*<span className={handles.txt_neutra_alt_bold} style={TxtPrecioAntes}>Precio antes ${PrecioAntes.toLocaleString('es-ES')}</span>*/}
+                  <div className={handles.txt_neutra_alt_bold} style={TxtPrecioAhora}>
+                    Precio Total: &nbsp; {formatter.format((sellingPriceWithTax && unitMultiplier) ? Math.trunc((sellingPriceWithTax * unitMultiplier) * cantBox) : 0)}
                   </div>
-                  <span className={handles.txt_neutra_alt_bold} style={TxtPrecioAntes}>Precio antes ${PrecioAntes.toLocaleString('es-ES')}</span>
-                </div>
-              }
-              {(porcentajeDescuento < 1) &&
-                <div className={handles.txt_neutra_alt_bold} style={TxtPrecioAhora}>
-                  Precio: ${PrecioAhora.toLocaleString('es-ES')}
-                </div>
-              }
+
+                  </div>
+                }
+                {(porcentajeDescuento < 1) &&
+                  <div className={handles.txt_neutra_alt_bold} style={TxtPrecioAhora}>
+                    Precio Total: &nbsp; {formatter.format((sellingPriceWithTax && unitMultiplier) ? Math.trunc((sellingPriceWithTax * unitMultiplier) * cantBox) : 0)}
+                  </div>
+                }
 
               {
                 /* ================  Bloque de pegantes... Quitado por segunda vez Soporte #02.660.468 RaySoft =======================PrecioSinDescuento
                   =============================================================================================================
+                Precio: ${PrecioAhora.toLocaleString('es-ES')}
+
                 }
                 <div className={handles.box_additional}>
                   {skuGlue !== '' && <GlueBySku sku={skuGlue} checkGlue={checkGlue} setCheckGlue={setCheckGlue} setUnitMultiplierGlue={setUnitMultiplierGlue}
