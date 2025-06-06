@@ -988,6 +988,7 @@ export const CustomAppCalculator = () =>
                   <div style={containerdiv}>
                     <div style={div1}>
                       {(porcentajeDescuento >= 1) && <span className={handles.txt_neutra_alt_bold} style={TxtPrecioAntes}>${PrecioAntes.toLocaleString('es-ES')}</span> }
+                      {(porcentajeDescuento < 1) && <span className={handles.txt_neutra_alt_bold}>&nbsp;</span> }
                     </div>
                     <div className={handles.txt_neutra_alt_bold} style={div2}>
                       {formatter.format((sellingPriceWithTax) ? Math.trunc(sellingPriceWithTax) : 0)} por M<sup>2</sup>
@@ -998,6 +999,7 @@ export const CustomAppCalculator = () =>
                   <div style={containerdiv}>
                     <div style={div1}>
                       {(porcentajeDescuento >= 1) && <span className={handles.txt_neutra_alt_bold} style={TxtPrecioAntes}>${precioAntesCaja.toLocaleString('es-ES')}</span> }
+                      {(porcentajeDescuento < 1) && <span className={handles.txt_neutra_alt_bold}>&nbsp;</span> }
                     </div>
                     <div style={div2}>
                       {formatter.format((unitMultiplier && sellingPriceWithTax) ? Math.trunc(sellingPriceWithTax * unitMultiplier ) : 0)} por Caja
