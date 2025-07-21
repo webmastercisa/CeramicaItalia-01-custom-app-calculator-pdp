@@ -543,7 +543,8 @@ export const CustomAppCalculator = () =>
     {
       "background-color": "#FFFFFF !important",
     }
-  */
+
+
   const bt_wh_red_txt =
   {
     normal:
@@ -552,22 +553,19 @@ export const CustomAppCalculator = () =>
       color: "#ED2024",
       "font-size": isMobile ? "1.6rem" : "2.0rem",
       "font-weight": "bolder",
-      /*"font-family": "NeutraTextBook",*/
-      padding: "1px 8px 8px 0px",
-      /*padding: "1px 40px",*/
-    },
+       padding: "1px 8px 8px 0px",
+     },
     hover:
     {
       "text-decoration": "none",
       color: "#FFFFFF",
       "font-size": "30px",
       "font-weight": "bolder",
-      /*"font-family": "NeutraTextBook",*/
-      padding: "1px 8px 8px 0px",
-      /*padding: "1px 40px",*/
-    }
+       padding: "1px 8px 8px 0px",
+     }
   }
 
+  */
 
   const bt_wh_gua =
   {
@@ -1150,9 +1148,7 @@ export const CustomAppCalculator = () =>
                         <button style={bt_wh_red.button} disabled={loading} onClick={() => addToCartAll(showToast)}>
                           {loading ?
                             <Spinner color="currentColor" size={30} /> :
-                            <div className={handles.btn_add_content}><IcoCart4628 />
-                              <span className={handles.txt_neutra_alt_bold} style={bt_wh_red_txt.normal}>Añadir al carrito</span>
-                            </div>
+                            <div> <IcoCart4628 /> <span className={handles.txt_neutra_alt_bold} style={bt_wh_red_text}>Añadir al carrito</span> </div>
                           }
                         </button>
                       </div>
@@ -1196,10 +1192,7 @@ export const CustomAppCalculator = () =>
                         onClick={() => addToCartAll(showToast)}>
                         {loading ?
                           <Spinner color="currentColor" size={30} /> :
-                          <div>
-                            <IcoCart4628 />
-                            <span className={handles.txt_neutra_alt_bold} style={bt_wh_red_text}>Añadir al carrito</span>
-                          </div>
+                          <div> <IcoCart4628 /> <span className={handles.txt_neutra_alt_bold} style={bt_wh_red_text}>Añadir al carrito</span> </div>
                         }
                       </button>
                     </div>
