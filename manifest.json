@@ -4,6 +4,7 @@
   "version": "0.0.38",
   "title": "custom-app-calculator-pdp",
   "description": "custom-app-calculator-pdp",
+  "icon": "assets/icon.png",
   "builders": {
     "react": "3.x",
     "messages": "1.x",
